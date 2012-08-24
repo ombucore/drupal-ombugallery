@@ -15,3 +15,4 @@ features[field][] = field_collection_item-field_slide-field_image
 features[field][] = field_collection_item-field_slide-field_slide_text
 features[field][] = field_collection_item-field_slide-field_slide_title
 files[] = includes/OmbuslideBean.php
+stylesheets[all][] = ombuslide.css
