@@ -4,3 +4,6 @@
 .ombuslide .slides > li {
   list-style: none;
 }
+.ombuslide .pager {
+  margin-bottom: 0;
+}
