@@ -223,7 +223,7 @@ function theme_ombuslide_collection($variables) {
 
   // Add unique id.
   $id = drupal_html_id('ombuslide');
-  $output = '<div id="' . $id . '" class="ombuslide">' . $output . '</div><div class="clearfix"></div>';
+  $output = '<div id="' . $id . '" class="ombuslide well">' . $output . '</div><div class="clearfix"></div>';
 
   // Add js
   $path = drupal_get_path('module', 'ombuslide') . '/js';
