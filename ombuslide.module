@@ -290,3 +290,32 @@ function theme_ombuslide_collection_fullscreen($variables) {
 
   return $output;
 }
+
+/**
+ * Helper function to create a slide (which is a field_collection).
+ */
+function ombuslide_create_slide($bean, $image_path = NULL, $title = NULL, $description = NULL) {
+
+  $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_slide'));
+  $field_collection_item->setHostEntity('bean', $bean);
+
+  if ($image_path) {
+    $directory = file_default_scheme() . '://slide';
+    file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+    $file = file_save_data(file_get_contents($image_path), $directory . '/slide.jpg');
+    $field_collection_item->field_image[LANGUAGE_NONE][] = (array)$file;
+  }
+  if ($title ) {
+    $field_collection_item->field_slide_title[LANGUAGE_NONE][]['value'] = $title;
+  }
+  if ($description) {
+    $field_collection_item->field_slide_text[LANGUAGE_NONE][] = array(
+      'value' => $description,
+      'format' => 'default',
+    );
+  }
+  if ($link) {
+    $field_collection_item->field_link[LANGUAGE_NONE][] = $link;
+  }
+  $field_collection_item->save();
+}
