@@ -109,7 +109,7 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
   $element = array();
 
   switch ($display['type']) {
-    case 'ombuslide_collection_default':
+    case 'ombuslide_collection':
 
       $list_items = array();
       foreach ($items as $delta => $item) {
