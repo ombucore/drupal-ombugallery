@@ -45,9 +45,6 @@ function ombuslide_theme($existing, $type, $theme, $path) {
     'ombuslide_collection_default' => array(
       'variables' => array('items' => NULL, 'use_pager' => TRUE),
     ),
-    'ombuslide_collection_fullscreen' => array(
-      'variables' => array('items' => NULL, 'use_pager' => TRUE),
-    ),
   );
 }
 
@@ -199,14 +196,25 @@ function ombuslide_form_bean_form_alter(&$form, $form_state) {
  * Implements hook_preprocess_entity.
  */
 function ombuslide_preprocess_entity(&$vars) {
-  if($vars['entity_type'] == 'bean' && $vars['bean']->type == 'ombuslide') {
+  if ($vars['entity_type'] == 'bean' && $vars['bean']->type == 'ombuslide') {
 
+    $styles = module_invoke_all('ombuslide_styles');
     $style = $vars['bean']->style;
-    $vars['content']['field_slide']['#theme'] = 'ombuslide_collection_' .
-      $style;
-    $vars['theme_hook_suggestions'][] = 'bean__ombuslide__' .
-      $vars['bean']->style;
+    $vars['content']['field_slide']['#theme']
+      = $styles[$style]['theme_function'];
   }
+}
+
+/**
+ * Implements hook_ombuslide_styles().
+ */
+function ombuslide_ombuslide_styles() {
+  return array(
+    'default' => array(
+      'label'          => 'Default',
+      'theme_function' => 'ombuslide_collection_default',
+    )
+  );
 }
 
 /**
@@ -251,62 +259,6 @@ function theme_ombuslide_collection_default($variables) {
   drupal_add_js($path . '/jquery.cycle.all.js');
   drupal_add_js($path . '/ombuslide.js');
   drupal_add_js(array('ombuslide' => array($id => array())), 'setting');
-
-  return $output;
-}
-
-/**
- * Theme callback.
- *
- * Themes a field collection as a ombuslide.
- */
-function theme_ombuslide_collection_fullscreen($variables) {
-  $items     = $variables['items'];
-  $use_pager = $variables['use_pager'];
-
-  $supersized_settings = array(
-    'slide_inderval'   => 500,
-    'transition'       => 1,
-    'transition_speed' => 700,
-    'image_protect' => 0,
-    'pause_hover' => 1,
-    'slide_links' => FALSE,
-    'slides' => array(),
-  );
-
-  if (!$items) {
-    return FALSE;
-  }
-
-  foreach ($variables['items'] as $item) {
-    $title_field = field_get_items('field_collection_item',
-      $item['data']['#field_collection_item'], 'field_slide_title');
-    $img_field = field_get_items('field_collection_item',
-      $item['data']['#field_collection_item'], 'field_image');
-    $supersized_settings['slides'][] = array(
-      'image' => file_create_url($img_field[0]['uri']),
-      'title' => $title_field[0]['safe_value'],
-    );
-  }
-
-  // Add supersized plugin.
-  $path = drupal_get_path('module', 'ombuslide') . '/styles/fullscreen/js/supersized-dfa4c5b/slideshow';
-  drupal_add_js($path . '/js/supersized.3.2.7.min.js');
-  drupal_add_js($path . '/js/jquery.easing.min.js');
-  drupal_add_css($path . '/css/supersized.css');
-
-  // Supersized amaa theme.
-  $path = drupal_get_path('module', 'ombuslide') . '/styles/fullscreen';
-  drupal_add_js($path . '/js/supersized.amaa.js');
-  drupal_add_css($path . '/css/supersized.amaa.css');
-
-  // Start the slideshow.
-  drupal_add_js("
-    jQuery(function($){
-      $.supersized(" . json_encode($supersized_settings) . ")})", 'inline');
-
-  $output = ' <!--Arrow Navigation--> <a id="prevslide" class="load-item"></a>
-    <a id="nextslide" class="load-item"></a>';
 
   return $output;
 }

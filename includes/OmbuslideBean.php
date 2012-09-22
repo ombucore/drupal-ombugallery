@@ -10,6 +10,7 @@ class OmbuslideBean extends BeanPlugin {
    * Implements the value() method.
    */
   public function values() {
+
     $values = parent::values();
     $values += array(
       'style' => 'default',
@@ -24,10 +25,9 @@ class OmbuslideBean extends BeanPlugin {
 
     $form = parent::form($bean, $form, $form_state);
 
-    $styles = array(
-      'default' => 'Default',
-      'fullscreen' => 'Full Screen',
-    );
+    foreach (module_invoke_all('ombuslide_styles') as $k => $v) {
+      $styles[$k] = $v['label'];
+    }
 
     $form['style'] = array(
       '#title' => t('Style'),
