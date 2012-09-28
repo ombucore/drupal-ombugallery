@@ -152,15 +152,15 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
  * Implements hook_menu_alter().
  */
 function ombuslide_menu_alter(&$items) {
-  $field = field_info_field('field_slide');
-  $path = field_collection_field_get_path($field);
+  // $field = field_info_field('field_slide');
+  // $path = field_collection_field_get_path($field);
 
-  $items[$path . '/add/%/%']['_tab'] = TRUE;
-  $items[$path . '/add/%/%']['tab_root'] = 'block';
-  $items[$path . '/add/%/%']['tab_parent'] = 'block';
-  $items[$path . '/add/%/%']['context'] = MENU_CONTEXT_INLINE;
-  $items[$path . '/add/%/%']['title'] = 'Add Slide';
-  $items[$path . '/add/%/%']['page callback'] = 'ombuslide_item_add';
+  // $items[$path . '/add/%/%']['_tab'] = TRUE;
+  // $items[$path . '/add/%/%']['tab_root'] = 'block';
+  // $items[$path . '/add/%/%']['tab_parent'] = 'block';
+  // $items[$path . '/add/%/%']['context'] = MENU_CONTEXT_INLINE;
+  // $items[$path . '/add/%/%']['title'] = 'Add Slide';
+  // $items[$path . '/add/%/%']['page callback'] = 'ombuslide_item_add';
 }
 
 /**
