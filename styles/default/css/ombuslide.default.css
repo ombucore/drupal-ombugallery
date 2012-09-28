@@ -1,0 +1,42 @@
+.ombuslide .slides li {
+  list-style: none;
+}
+.ombuslide .pager-wrapper {
+  float: right;
+}
+.ombuslide .pager-wrapper .prev,
+.ombuslide .pager-wrapper .next {
+  float: left;
+  width: 1em;
+  visibility: hidden;
+  display: inline-block;
+  padding-right: 1em;
+}
+.ombuslide .pager-wrapper .prev:after,
+.ombuslide .pager-wrapper .next:after {
+  float: left;
+  visibility: visible;
+}
+.ombuslide .pager-wrapper .next:after {
+  content: '\00BB';
+}
+.ombuslide .pager-wrapper .prev:after {
+  content: '\00AB';
+}
+.ombuslide .pager {
+  display: inline;
+  float: left;
+}
+.ombuslide .pager a {
+  padding: 0;
+  height: 12px;
+  width: 12px;
+  background-color: #887f74;
+  text-indent: -9999px;
+}
+.ombuslide .pager a:hover {
+  background-color: #887f74;
+}
+.ombuslide .pager .activeSlide a {
+  background-color: #d7a149;
+}

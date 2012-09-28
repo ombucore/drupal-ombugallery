@@ -254,11 +254,12 @@ function theme_ombuslide_collection_default($variables) {
   $id = drupal_html_id('ombuslide');
   $output = '<div id="' . $id . '" class="ombuslide">' . $output . '</div><div class="clearfix"></div>';
 
-  // Add js
-  $path = drupal_get_path('module', 'ombuslide') . '/styles/default/js';
-  drupal_add_js($path . '/jquery.cycle.all.js');
-  drupal_add_js($path . '/ombuslide.js');
+  // Add js.
+  $path = drupal_get_path('module', 'ombuslide') . '/styles/default';
+  drupal_add_js($path . '/js/jquery.cycle.all.js');
+  drupal_add_js($path . '/js/ombuslide.js');
   drupal_add_js(array('ombuslide' => array($id => array())), 'setting');
+  drupal_add_css($path . '/css/ombuslide.default.css');
 
   return $output;
 }
