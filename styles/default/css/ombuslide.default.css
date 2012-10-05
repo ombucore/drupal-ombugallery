@@ -1,5 +1,6 @@
 .ombuslide .slides {
   overflow: hidden;
+  margin: 0;
 }
 .ombuslide .slides li {
   list-style: none;
