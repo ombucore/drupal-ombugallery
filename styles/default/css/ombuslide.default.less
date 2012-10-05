@@ -1,6 +1,7 @@
-@color1: #887F74;
-@color2: #D7A149;
-@pager-button-size: 12px;
+@color1: hsl(35, 100%, 50%); // Indicated the current active slide
+@color2: hsl(24, 11%, 63%); // The default color of pager items
+@pager-button-size: 9px; 
+
 .ombuslide {
   .slides {
     overflow: hidden;
@@ -13,12 +14,11 @@
   }
   .pager-wrapper {
     float:right;
+    padding: 5px 8px;
     .prev, .next {
-      float: left;
       height: 16px;
       width: 16px;
       display: inline-block;
-      padding-right: 1em;
       text-indent: -9999px;
       background-repeat: no-repeat;
       background-position: 50%;
@@ -30,24 +30,46 @@
         background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAANCAYAAABlyXS1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEREIyREU2RjA1REIxMUUyQjUxQUVDNzIxQjY5NTc2QyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEREIyREU3MDA1REIxMUUyQjUxQUVDNzIxQjY5NTc2QyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkREQjJERTZEMDVEQjExRTJCNTFBRUM3MjFCNjk1NzZDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkREQjJERTZFMDVEQjExRTJCNTFBRUM3MjFCNjk1NzZDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+GYQIWAAAAOFJREFUeNpiOLRz8+ZjezaK/f//nwEdMzEwMPj8+ct45cjuTb4MaIARqPM/nPP//ywORrZiEzf3LyA+E1BmNkzyPyNj2jeG3+cP7txqBlX8n+Hw7s1hDP8YZzMwMvBB1f0FCjeBJUHg4M5NikyMjMuB6s2RrIFbyXBg/zpe5t9sF4FMRbCdMIkjO7doMf9mPQKTgOs8tHNrGiPj/wlAPieKnUCvrAVyguAuZmC48/8/Y7S9u/cpJmQJkD+5GFgNQRIgPgtU/Wugsck2bn6bkUMIJLmFhfl/sqWz3yv04AMIMAC+O2dDO5824QAAAABJRU5ErkJggg==');
     }
   }
-  .pager {
+  .ombuslide-pager {
+    padding: 0 3px;
     margin: 0;
-    display: inline;
-    float: left;
-    a {
-      padding:0;
-      margin:0 2px;
-      height: @pager-button-size;
-      width: @pager-button-size;
-      background-color: @color1;
-      text-indent: -9999px;
-      &:hover {
+    display: inline-block;
+    li {
+      display: inline-block;
+      margin-left: 10px;
+      &:first-child {margin-left: 0;}
+      &.activeSlide a {
         background-color: @color1;
+        cursor: default;
+        &:hover {
+          background-color: @color1;
+        }
+      }
+      a {
+        padding:0;
+        margin:0 2px;
+        display: inline-block;
+        height: @pager-button-size;
+        width: @pager-button-size;
+        background-color: @color2;
+        text-indent: -9999px;
+        text-decoration: none;
+
+        -webkit-border-radius: @pager-button-size;
+        -moz-border-radius: @pager-button-size;
+        border-radius: @pager-button-size;
+
+        @transition: all .3s;
+        -webkit-transition: @transition;
+        -moz-transition: @transition;
+        transition: @transition;
+
+        behavior: url(/sites/all/themes/ombubase/betterbase/css/PIE.php);
+        position: relative; // Helps IE not mess up PIE processing of CSS3.
+        &:hover {
+          background-color: darken(@color2, 10);
+        }
       }
     }
-    .activeSlide a {
-      background-color: @color2;
-    }
-
   }
 }
