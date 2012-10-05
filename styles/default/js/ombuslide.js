@@ -4,8 +4,8 @@
       for (var slideshow in settings.ombuslide) {
         if ($('#' + slideshow + ' ul.slides > li').length > 1) {
           var slides = $('#' + slideshow + ' ul.slides', context);
-          slides.after('<div class="pager-wrapper"><a href="#" class="prev">Previous</a><ul class="ombuslide-pager" id="' + slideshow + '-nav">');
-          $('#' + slideshow + ' ul.ombuslide-pager', context).after('<a href="#" class="next">Next</a></div>');
+          slides.after('<div class="pager-wrapper"><div class="controls"><a href="#" class="prev">Previous</a><ul class="ombuslide-pager" id="' + slideshow + '-nav">');
+          $('#' + slideshow + ' ul.ombuslide-pager', context).after('<a href="#" class="next">Next</a></div></div>');
           x = slides.cycle({
             timeout: 0,
             pager: '#' + slideshow + '-nav',
