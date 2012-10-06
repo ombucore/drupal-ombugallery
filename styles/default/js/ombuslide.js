@@ -12,7 +12,7 @@
               return '<li class="' + index + '"><a href="#">' + (index + 1) +
               '</a></li>';
           }
-          slides.cycle(opts).cycle();
+          slides.cycle(opts)
         }
       }
     }

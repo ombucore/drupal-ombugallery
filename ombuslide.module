@@ -305,6 +305,7 @@ function theme_ombuslide_collection_default($variables) {
     'next' => '#ombuslide .next',
     'prev' => '#ombuslide .prev',
     'width' => 'auto',
+    'height' => 'auto',
     'speed' => '300',
   );
 
