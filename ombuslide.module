@@ -43,7 +43,11 @@ function ombuslide_bean_types() {
 function ombuslide_theme($existing, $type, $theme, $path) {
   return array(
     'ombuslide_collection_default' => array(
-      'variables' => array('items' => NULL, 'use_pager' => TRUE),
+      'variables' => array(
+        'items' => NULL,
+        'use_pager' => TRUE,
+        'settings' => NULL,
+      ),
     ),
   );
 }
@@ -95,8 +99,41 @@ function ombuslide_field_formatter_info() {
     'ombuslide_collection' => array(
       'label' => t('Slideshow'),
       'field types' => array('field_collection'),
+      'settings' => array(
+        'plugin_options' => '',
+      )
     ),
   );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function ombuslide_field_formatter_settings_form($field, $instance, $view_mode,
+$form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  if ($display['type'] == 'ombuslide_collection') {
+      $elements = array();
+      $elements['plugin_options'] = array(
+        '#type' => 'textarea',
+        '#title' => t('Options for the plugin that will render the slidehow. Must be valid JSON.'),
+        '#default_value' => $settings['plugin_options'],
+      );
+      return $elements;
+  }
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function ombuslide_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  if ($display['type'] == 'ombuslide_collection') {
+      $settings = $display['settings'];
+      return implode('-', $settings);
+  }
 }
 
 /**
@@ -141,6 +178,7 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
         '#theme' => 'ombuslide_collection_default',
         '#items' => $list_items,
         '#use_pager' => TRUE,
+        '#settings' => $display['settings'],
       );
       break;
   }
@@ -259,6 +297,24 @@ function theme_ombuslide_collection_default($variables) {
   drupal_add_js($path . '/js/jquery.cycle.all.js');
   drupal_add_js($path . '/js/ombuslide.js');
   drupal_add_js(array('ombuslide' => array($id => array())), 'setting');
+
+  // Default values. These are overriden by those from the formatter settings
+  // form.
+  $opts = array(
+    'timeout' => 0,
+    'next' => '#ombuslide .next',
+    'prev' => '#ombuslide .prev',
+    'width' => 'auto',
+    'speed' => '300',
+  );
+
+  // If getting an error below, it's likely that the user entered
+  // invalid JSON in the formatter settings form.
+  $opts = array_merge($opts,
+    (array) json_decode($variables['settings']['plugin_options']));
+
+  /* drupal_add_js(array('ombuslide' => $opts, 'setting')); */
+  drupal_add_js(array('ombuslide' => array($id => $opts)), 'setting');
   drupal_add_css($path . '/css/ombuslide.default.css');
 
   return $output;
