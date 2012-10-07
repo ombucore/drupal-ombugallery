@@ -37,7 +37,9 @@ function ombuslide_field_default_fields() {
         'default' => array(
           'label' => 'hidden',
           'module' => 'ombuslide',
-          'settings' => array(),
+          'settings' => array(
+            'plugin_options' => '',
+          ),
           'type' => 'ombuslide_collection',
           'weight' => '1',
         ),
