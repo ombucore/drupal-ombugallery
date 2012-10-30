@@ -26,7 +26,7 @@
   // displayed.
   Drupal.ombuslideAdmin.setupForm = function($form) {
     $form.addClass("slide-form").hide();
-    var $button = $('<div class="form-actions"><input class="form-submit submit" type="button" value="Save" /></div>').click(function() {
+    var $button = $('<div class="form-actions"><input class="form-submit submit btn" type="button" value="Save Slide" /></div>').click(function() {
       $form.hide();
       Drupal.ombuslideAdmin.triggerChange();
       $form.before(Drupal.ombuslideAdmin.createOverview($form));
@@ -87,7 +87,7 @@
       html += $(".field-name-field-slide-title input", $form).val();
     }
     html += '</div>';
-    html += '<div class="overview-column form-actions form-wrapper"><input type="button" class="form-submit edit" value="Edit" />';
+    html += '<div class="overview-column form-actions form-wrapper"><input type="button" class="form-submit edit btn" value="Edit" />';
     html += '</div>';
     html += '</td>';
     return html;
