@@ -206,7 +206,7 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
       $formatter_settings = (array) json_decode($display['settings']['style_options']);
       $style_default_settings  = (array)
         json_decode($styles[$display['settings']['style']]['default_settings']);
-      $settings = array_merge($formatter_settings, $style_default_settings);
+      $settings = array_merge($style_default_settings, $formatter_settings);
 
       $element = array(
         '#theme' => $styles[$display['settings']['style']]['theme_function'],
