@@ -1,0 +1,149 @@
+<?php
+
+/**
+ * @file
+ * Fullscreen style for ombuslide.module
+ */
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function ombuslide_fullscreen_image_default_styles() {
+  $styles = array();
+
+  $styles['fullscreen'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale',
+        'data' => array('width' => 2000, 'upscale' => 0),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
+ * Implements hook_library().
+ */
+function ombuslide_fullscreen_library() {
+  $path = drupal_get_path('module', 'ombuslide_fullscreen') .  '/styles/fullscreen/js/supersized-dfa4c5b/slideshow';
+  $libraries['supersized'] = array(
+    'title' => 'Supersized',
+    'website' => 'http://www.buildinternet.com/project/supersized/',
+    'version' => 'dfa4c5b',
+    'js' => array(
+      $path . '/js/supersized.3.2.7.min.js' => array(),
+      $path . '/js/jquery.easing.min.js' => array(),
+    ),
+    'css' => array(
+      $path . '/css/supersized.css' => array(),
+    ),
+  );
+
+  $path = drupal_get_path('module', 'ombuslide_fullscreen') . '/styles/fullscreen';
+  $libraries['ombuslide_fullscreen'] = array(
+    'title' => 'Ombuslide: Fullscreen',
+    'version' => '1.0',
+    'js' => array(
+      $path . '/js/supersized.ombuslide.js' => array(),
+    ),
+    'css' => array(
+      $path . '/css/supersized.ombuslide.css' => array(),
+    ),
+    'dependencies' => array(
+      array('ombuslide_fullscreen', 'supersized'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_ombuslide_styles().
+ */
+function ombuslide_fullscreen_ombuslide_styles() {
+  return array(
+    'fullscreen' => array(
+      'label'          => 'Full Screen',
+      'theme_function' => 'ombuslide_collection_fullscreen',
+      'default_settings' => '
+        {"slide_inderval"   : 500,
+        "transition"       : 1,
+        "transition_speed" : 700,
+        "image_protect"    : 0,
+        "pause_hover"      : 1,
+        "slide_links"      : false }',
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ombuslide_fullscreen_theme($existing, $type, $theme, $path) {
+  return array(
+    'ombuslide_collection_fullscreen' => array(
+      'variables' => array(
+        'items' => NULL,
+        'use_pager' => TRUE,
+        'settings' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Theme callback for the Fullscreen slideshow style.
+ */
+function theme_ombuslide_collection_fullscreen($variables) {
+  $output    = '';
+  $items     = $variables['items'];
+  $use_pager = $variables['use_pager'];
+  $settings  = $variables['settings'];
+
+  $settings['slides'] = array();
+
+  if (!$items) {
+    return FALSE;
+  }
+
+  foreach ($variables['items'] as $item) {
+    $field_collection_item = $item['data']['#field_collection_item'];
+
+    $title_field = field_get_items('field_collection_item', $field_collection_item, 'field_slide_title');
+    $img_field = field_get_items('field_collection_item', $field_collection_item, 'field_image');
+    $text_field = field_get_items('field_collection_item', $field_collection_item, 'field_slide_text');
+
+    $settings['slides'][] = array(
+      'image' => isset($img_field[0]) ? image_style_url('fullscreen', $img_field[0]['uri']) : '',
+      'title' => $title_field[0]['safe_value'],
+      'body' => $text_field[0]['safe_value'],
+    );
+  }
+
+  // Add supersized plugin.
+  drupal_add_library('ombuslide_fullscreen', 'ombuslide_fullscreen');
+
+  // Start the slideshow.
+  drupal_add_js("
+    jQuery(function($){
+      $.supersized(" . json_encode($settings) . ")})", 'inline');
+
+    if (count($settings['slides']) > 1) {
+      $output .= <<<EOT
+        <!--Arrow Navigation-->
+        <a id="prevslide" class="load-item"></a>
+        <a id="nextslide" class="load-item"></a>
+EOT;
+    }
+
+    $output .= <<<EOT
+      <!--Slide fields -->
+      <div id="slideinfo">
+        <div id="slidetitle"></div>
+        <div id="slidebody"></div>
+      </div>
+EOT;
+
+  return $output;
+}
