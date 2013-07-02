@@ -242,7 +242,7 @@ function ombuslide_block_view_alter(&$data, $block) {
   // Add "add" link to block contextual links.
   if ($block->module == 'bean' && isset($data['content']) && is_array($data['content']) && array_key_exists('bean', $data['content'])) {
     foreach ($data['content']['bean'] as $id => $bean) {
-      if ($bean['#bundle'] == 'ombuslide') {
+      if (!empty($bean['#bundle']) && $bean['#bundle'] == 'ombuslide') {
         $field = field_info_field('field_slide');
         $path = field_collection_field_get_path($field);
         $data['content']['#contextual_links']['field_collection'] = array($path . '/add', array('bean', $id));
