@@ -3,18 +3,10 @@
     attach: function(context, settings) {
       if (!$(context).hasClass('draggable')) {
         // Hide all current slide forms.
-        $('table#field-slide-values tr.draggable:not(:last, .ombuslide-processed)', context).each(function() {
+        $('table#field-slide-values tr.draggable:not(.ombuslide-processed)', context).each(function() {
           var $form = $(this).addClass('ombuslide-processed').find("> td:nth-child(2)")
           Drupal.ombuslideAdmin.setupForm($form);
           $form.before(Drupal.ombuslideAdmin.createOverview($form));
-        });
-        // Hide new slide form.
-        $('table#field-slide-values tr.draggable:last', context).each(function() {
-          if (!$(this).hasClass('ombuslide-processed')) {
-            var $form = $(this).addClass('ombuslide-processed').find("> td:nth-child(2)")
-            Drupal.ombuslideAdmin.setupForm($form);
-            $form.before(Drupal.ombuslideAdmin.createAdd($form));
-          }
         });
       }
     }
