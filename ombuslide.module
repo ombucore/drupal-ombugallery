@@ -366,6 +366,8 @@ function ombuslide_create_slide($bean, $image_path = NULL, $title = NULL, $descr
     $field_collection_item->field_link[LANGUAGE_NONE][] = $link;
   }
   $field_collection_item->save();
+
+  return $field_collection_item;
 }
 
 /**
