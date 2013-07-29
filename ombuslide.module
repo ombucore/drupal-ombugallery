@@ -47,6 +47,7 @@ function ombuslide_theme($existing, $type, $theme, $path) {
         'items' => NULL,
         'use_pager' => TRUE,
         'settings' => NULL,
+        'style' => NULL,
       ),
     ),
   );
@@ -210,6 +211,7 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
 
       $element = array(
         '#theme' => $styles[$display['settings']['style']]['theme_function'],
+        '#style' => $display['settings']['style'],
         '#items' => $list_items,
         '#use_pager' => TRUE,
         '#settings' => $settings,
@@ -311,9 +313,11 @@ function theme_ombuslide_collection_default($variables) {
 
   $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
 
+  $classes = 'ombuslide ombuslide-' . $variables['style'];
+
   // Add unique id.
   $id = drupal_html_id('ombuslide');
-  $output = '<div id="' . $id . '" class="ombuslide">' . $output . '</div><div class="clearfix"></div>';
+  $output = '<div id="' . $id . '" class="' . $classes . '">' . $output . '</div><div class="clearfix"></div>';
 
   // Add js.
   $path = drupal_get_path('module', 'ombuslide') . '/styles/default';
