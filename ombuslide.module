@@ -50,6 +50,14 @@ function ombuslide_theme($existing, $type, $theme, $path) {
         'style' => NULL,
       ),
     ),
+    'ombuslide_collection_responsive' => array(
+      'variables' => array(
+        'items' => NULL,
+        'use_pager' => TRUE,
+        'settings' => NULL,
+        'style' => NULL,
+      ),
+    ),
   );
 }
 
@@ -275,6 +283,11 @@ function ombuslide_ombuslide_styles() {
       'label'          => 'Default',
       'theme_function' => 'ombuslide_collection_default',
       'default_settings' => '',
+    ),
+    'responsive' => array(
+      'label'          => 'Responsive',
+      'theme_function' => 'ombuslide_collection_responsive',
+      'default_settings' => '',
     )
   );
 }
@@ -339,6 +352,46 @@ function theme_ombuslide_collection_default($variables) {
   /* drupal_add_js(array('ombuslide' => $opts, 'setting')); */
   drupal_add_js(array('ombuslide' => array($id => $settings)), 'setting');
   drupal_add_css($path . '/css/ombuslide.default.css');
+
+  return $output;
+}
+
+/**
+ * Theme callback.
+ *
+ * Themes a field collection as a ombuslide with responsive style.
+ */
+function theme_ombuslide_collection_responsive($variables) {
+  $items     = $variables['items'];
+  $use_pager = $variables['use_pager'];
+  $settings  = $variables['settings'];
+
+  $output = '';
+
+  if (!$items) {
+    return $output;
+  }
+
+  $items = array();
+  foreach ($variables['items'] as $item) {
+    $item['data'] = drupal_render($item['data']);
+    $items[] = $item;
+  }
+
+  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
+
+  $classes = 'ombuslide ombuslide-' . $variables['style'];
+
+  // Add unique id.
+  $id = drupal_html_id('ombuslide');
+  $output = '<div id="' . $id . '" class="' . $classes . '">' . $output . '</div><div class="clearfix"></div>';
+
+  // Add js.
+  $path = drupal_get_path('module', 'ombuslide') . '/styles/responsive';
+  drupal_add_js($path . '/js/ombuslide.js');
+
+  drupal_add_js(array('ombuslide' => array($id => $settings)), 'setting');
+  drupal_add_css($path . '/css/ombuslide.responsive.css');
 
   return $output;
 }
