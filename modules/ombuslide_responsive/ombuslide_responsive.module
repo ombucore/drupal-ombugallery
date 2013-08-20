@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * @file
+ * Responsive style for ombuslide.module
+ */
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function ombuslide_responsive_image_default_styles() {
+  $styles = array();
+
+  $styles['responsive-highres'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale',
+        'data' => array('width' => 2000, 'upscale' => 0),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['responsive-lowres'] = array(
+    'effects' => array(
+      array(
+        'name' => 'image_scale',
+        'data' => array('width' => 640, 'upscale' => 0),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
+ * Implements hook_library().
+ */
+function s() {
+
+  $path = drupal_get_path('module', 'ombuslide_responsive') . '/styles/responsive';
+  $libraries['ombuslide_responsive'] = array(
+    'title' => 'Ombuslide: Responsive',
+    'version' => '1.0',
+    'js' => array(
+      $path . '/js/ombuslide.responsive.js' => array(),
+    ),
+    'css' => array(
+      $path . '/css/ombuslide.responsive.css' => array(),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_ombuslide_styles().
+ */
+function ombuslide_responsive_ombuslide_styles() {
+  return array(
+    'responsive' => array(
+      'label'          => 'Responsive',
+      'theme_function' => 'ombuslide_collection_responsive',
+      'default_settings' => '
+        {"slide_inderval"   : 500,
+        "transition"       : 1,
+        "transition_speed" : 700,
+        "image_protect"    : 0,
+        "pause_hover"      : 1,
+        "slide_links"      : false }',
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ombuslide_responsive_theme($existing, $type, $theme, $path) {
+  return array(
+    'ombuslide_collection_responsive' => array(
+      'variables' => array(
+        'items' => NULL,
+        'use_pager' => TRUE,
+        'settings' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Theme callback for the Responsive slideshow style.
+ */
+function theme_ombuslide_collection_responsive($variables) {
+  $output    = '';
+  $items     = $variables['items'];
+  $use_pager = $variables['use_pager'];
+  $settings  = $variables['settings'];
+
+  $settings['slides'] = array();
+
+  if (!$items) {
+    return FALSE;
+  }
+
+  $items = array();
+  $nav_items = array();
+  foreach ($variables['items'] as $key => $item) {
+    $field_collection_item = $item['data']['#field_collection_item'];
+
+    // Change image style to responsive style.
+    $image =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_image'][0];
+    $image['#image_style'] = 'responsive-lowres';
+    $image['#item']['attributes']['data-highres'] = image_style_url('responsive-highres', $image['#item']['uri']);
+
+    // Render the contents of the item
+    $item['data'] = drupal_render($item['data']);
+
+    // Assign an ID that can be used by the anchor links
+    $item['id'] = 'slide-' . $key;
+
+    // Add item and its anchor link to item list array
+    $items[] = $item;
+    $nav_items[] = '<a href="#' . $item['id'] . '" class="load-item slide-nav-item">Slide ' . ($key + 1) . '</a>';
+  }
+
+  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
+  $output .= theme('item_list', array('items' => $nav_items, 'attributes' => array('class' => array('slides-nav'))));
+
+  // Add library
+  drupal_add_library('ombuslide_responsive', 'ombuslide_responsive');
+
+  return $output;
+}
