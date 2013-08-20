@@ -4,20 +4,110 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
+    position: relative;
+    left: 0%;
+    transition: left 0.3s ease;
 
-    li {
+    > li {
+      position: relative;
       margin: 0;
       padding: 0;
+      display: inline-block;
+      vertical-align: top;
+      margin-right: -0.25em;
+      width: 100%;
 
-      img {
-        display: block;
+      .field-name-field-image {
+        position: relative;
         width: 100%;
-        height: auto;
+        height: 0;
+        padding-top: 67.1875%;  // 640px x 430px aspect ratio
+        
+        .center-crop {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          overflow: hidden;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+
+          img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            opacity: 0.0;
+          }
+        }
+      }
+
+      .group-caption {
+        padding: 15px;
+        white-space: normal;
+
+        * {
+          margin: 0;
+          padding: 0;
+        }
       }
 
       .contextual-links-wrapper {
-        right: 50px;
+        right: 40px;
+      }
+    }
+  }
+
+  .slides-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    padding-top: 0;
+
+    > ul {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+
+      > li {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        margin-right: -0.25em;
+
+        a {
+          display: block;
+          width: 24px;
+          height: 24px;
+          margin: 0 5px;
+          padding: 0;
+          border: 6px solid rgba(255, 255, 255, 0.4);
+          background-color: white;
+          border-radius: 100px;
+          text-indent: -99999px;
+          background-clip: padding-box;
+          transition: background-color 0.3s ease;
+        }
+
+        &.active a {
+          background-color: black;
+        }
       }
     }
   }
 }
+
+      // aside#block-bean-homepage-slideshow {
+      //   > .contextual-links-wrapper {
+      //     right: 70px;
+      //   }
+      // }
