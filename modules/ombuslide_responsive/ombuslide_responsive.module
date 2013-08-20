@@ -15,7 +15,7 @@ function ombuslide_responsive_image_default_styles() {
     'effects' => array(
       array(
         'name' => 'image_scale',
-        'data' => array('width' => 2000, 'upscale' => 0),
+        'data' => array('width' => 2000, 'height' => NULL, 'upscale' => 0),
         'weight' => 0,
       ),
     ),
@@ -25,7 +25,7 @@ function ombuslide_responsive_image_default_styles() {
     'effects' => array(
       array(
         'name' => 'image_scale',
-        'data' => array('width' => 640, 'upscale' => 0),
+        'data' => array('width' => 640, 'height' => NULL, 'upscale' => 0),
         'weight' => 0,
       ),
     ),
