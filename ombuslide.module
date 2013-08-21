@@ -88,6 +88,16 @@ function field_collection_contextual_links_view_alter(&$element, &$items) {
           }
         }
       }
+
+      // Add slide indicator to contextual links
+      if ($element['#element']['#field']['field_name'] === 'field_slide') {
+        $element['#links'] = array(
+          'bean-type' => array(
+            'title' => t('Slide'),
+            'href' => current_path(),
+          ),
+        ) + $element['#links'];
+      }
     }
   }
 }
