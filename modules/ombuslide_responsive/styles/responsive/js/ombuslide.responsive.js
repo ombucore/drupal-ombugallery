@@ -1,6 +1,9 @@
 (function ($) {
-  Drupal.behaviors.ombuslide = {
-    attach: function(context, settings) {
+//   Drupal.behaviors.ombuslide = {
+//     attach: function(context, settings) {
+
+    $(document).on('ready', function() {
+
       console.log('Responsive ombuslide in the house.')
 
       // On click handler for slide anchor links
@@ -27,6 +30,6 @@
 
       // Set the first slide link to active for each ombuslide
       $('.ombuslide-responsive .slides-nav li:first-child').addClass('active');
-    }
-  }
+    });
+  // }
 })(jQuery);
