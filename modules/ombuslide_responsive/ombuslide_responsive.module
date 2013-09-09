@@ -113,9 +113,9 @@ function theme_ombuslide_collection_responsive($variables) {
     $image['#image_style'] = 'responsive-lowres';
     $image['#item']['attributes']['data-highres'] = image_style_url('responsive-highres', $image['#item']['uri']);
 
-    // Wrap the image in a div and set its background to this image, which can be centered and cropped via CSS
-    $image['#prefix'] = '<div class="center-crop" style="background-image: url(' . image_style_url('responsive-lowres', $image['#item']['uri']) . ');">';
-    $image['#suffix'] = '</div>';
+    // Wrap the image to enable client-side scaling, positioning, and cropping
+    $image['#prefix'] = '<div class="slide-image-outer"><div class="slide-image-inner" style="background-image: url(' . image_style_url('responsive-lowres', $image['#item']['uri']) . ');">';
+    $image['#suffix'] = '</div></div>';
 
     // Render the contents of the item
     $item['data'] = drupal_render($item['data']);
@@ -132,10 +132,13 @@ function theme_ombuslide_collection_responsive($variables) {
     $nav_items[] = '<a href="#' . $item['id'] . '" class="load-item slide-nav-item">Slide ' . ($key + 1) . '</a>';
   }
 
-  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
-  $output .= '<div class="slides-nav">' . theme('item_list', array('items' => $nav_items, 'attributes' => array('class' => array('slides-nav-list')))) . '</div>';
+  $output .= '<div class="slides"><div class="slides-inner">' . theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides-list')))) . '</div></div>';
 
-  $output = '<div class="ombuslide-responsive">' . $output . '</div>';
+  if (count($nav_items) > 1) {
+    $output .= '<div class="slides-nav"><div class="slides-nav-inner">' . theme('item_list', array('items' => $nav_items, 'attributes' => array('class' => array('slides-nav-list')))) . '</div></div>';
+  }
+
+  $output = '<div class="ombuslide-responsive"><div class="ombuslide-responsive-inner">' . $output . '</div></div>';
 
   // Add library
   drupal_add_library('ombuslide_responsive', 'ombuslide_responsive');
