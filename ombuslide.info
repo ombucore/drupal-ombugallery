@@ -9,6 +9,7 @@ dependencies[] = bean
 dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = image
+dependencies[] = media
 features[features_api][] = api:2
 features[field_base][] = field_slide
 features[field_base][] = field_slide_text
