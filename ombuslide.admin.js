@@ -71,8 +71,8 @@
 
   Drupal.theme.prototype.ombuslideOverview = function($form) {
     var html = '<td class="overview"><div class="overview-column">';
-    if ($("div.image-preview", $form).html()) {
-      html += $("div.image-preview", $form).html();
+    if ($("div.media-item", $form).html()) {
+      html += $("div.media-item", $form).html();
     }
     html += '</div><div class="overview-column title">';
     if ($(".field-name-field-slide-title input", $form).val()) {
