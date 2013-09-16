@@ -30,6 +30,28 @@
 
       // Set the first slide link to active for each ombuslide
       $('.ombuslide-responsive .slides-nav li:first-child').addClass('active');
+
+      // Swap in high-res images if screen size allows
+      if (window.screen.width > 640) {
+
+        $('.ombuslide-responsive .slide-image-inner').each(function () {
+
+          // Get the URL of the high-res version
+          var $img = $(this).find('img');
+          var src_highres = $img.attr('data-highres');
+
+          // If a high-res version has been provided...
+          if (src_highres) {
+
+            // ...load it into the image element (which is purposefully invisible in ombuslide-responsive)
+            $img.attr('src', src_highres).bind('onreadystatechange load', function() {
+
+              // When the image content has completed loading, swap it into the background to make it visible
+              $(this).closest('.slide-image-inner').css('background-image','url(' + src_highres + ')');
+            });
+          }
+        });
+      }
     });
   // }
 })(jQuery);
