@@ -125,7 +125,7 @@ function theme_ombuslide_collection_responsive($variables) {
     $item['class'] = array($color[0]['value']);
 
     // Assign an ID that can be used by the anchor links
-    $item['id'] = 'slide-' . $key;
+    $item['id'] = drupal_html_id('slide');
 
     // Add item and its anchor link to item list array
     $items[] = $item;
