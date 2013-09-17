@@ -2,10 +2,8 @@
   Drupal.behaviors.ombuslide = {
     attach: function(context, settings) {
 
-      console.log('Responsive ombuslide in the house.')
-
       // On click handler for slide anchor links
-      $('.ombuslide-responsive .slides-nav a').on('click', function(e) {
+      $('.ombuslide-responsive .slides-nav a', context).on('click', function(e) {
 
         // Get the container of this particular slideshow
         var container = $(this).closest('.ombuslide-responsive');
@@ -27,12 +25,12 @@
       });
 
       // Set the first slide link to active for each ombuslide
-      $('.ombuslide-responsive .slides-nav li:first-child').addClass('active');
+      $('.ombuslide-responsive .slides-nav li:first-child', context).addClass('active');
 
       // Swap in high-res images if screen size allows
       if (window.screen.width > 640) {
 
-        $('.ombuslide-responsive .slide-image-inner').each(function () {
+        $('.ombuslide-responsive .slide-image-inner', context).each(function () {
 
           // Get the URL of the high-res version
           var $img = $(this).find('img');
