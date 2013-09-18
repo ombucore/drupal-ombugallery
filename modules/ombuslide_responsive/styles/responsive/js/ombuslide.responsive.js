@@ -11,17 +11,12 @@
         // Get the index of the clicked slide in relation to its siblings
         var index = container.find('.slides-nav li').index($(this).parent());
 
-        // Set the left position of the corresponding slide; transition rules
-        // in the CSS file will handle the animation
-        container.find('.slides').css('left', (index * -100) + '%');
+        // Advance the slide
+        advanceSlide(container, index);
 
-        // Set this nav link to the active state and all others to inactive
-        container.find('.slides-nav li').removeClass('active');
-        $(this).parent().addClass('active');
-
-	      e.preventDefault();
-	      e.stopPropagation();
-	      return false;
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
       });
 
       // Set the first slide link to active for each ombuslide
@@ -48,6 +43,40 @@
           }
         });
       }
+
+      // Configure auto-advancement
+      $('.ombuslide-responsive.autoadvance', context).each(function(index) {
+
+        // Get handle to slideshow and determine its length
+        var $container = $(this);
+        var last = $container.find('.slides-nav li').length - 1;
+
+        // Get interval, if provided
+        var interval = $container.data('ombuslide-interval') ? $container.data('ombuslide-interval') : 4000;
+
+        // Start auto-advance
+        var intervalId = setInterval(function() {
+          var cur = $container.find('.slides-nav li.active').index();
+          var next = (cur < last) ? (cur + 1) : (0);
+          advanceSlide($container, next);
+        }, interval);
+
+        // Cancel the auto-advance if the user interacts with the slideshow
+        $container.find('.slides-nav a').on('click', function() {
+          clearInterval(intervalId);
+        });
+      });
     }
   }
+
+  function advanceSlide($container, index) {
+    // Set the left position of the corresponding slide; transition rules
+    // in the CSS file will handle the animation
+    $container.find('.slides').css('left', (index * -100) + '%');
+
+    // Set this nav link to the active state and all others to inactive
+    $container.find('.slides-nav li').removeClass('active');
+    $container.find('.slides-nav li').eq(index).addClass('active');
+  }
 })(jQuery);
+
