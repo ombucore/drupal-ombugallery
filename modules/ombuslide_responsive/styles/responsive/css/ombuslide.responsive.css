@@ -111,7 +111,9 @@
 .ombuslide-responsive.image-force-height-proportional .field-name-field-image img {
   width: auto;
   height: 100%;
-  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .ombuslide-responsive.image-force-height-proportional .slides-nav {
   position: absolute;
@@ -167,7 +169,9 @@
   .ombuslide-responsive.image-force-height-proportional-mobile .field-name-field-image img {
     width: auto;
     height: 100%;
-    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   .ombuslide-responsive.image-force-height-proportional-mobile .slides-nav {
     position: absolute;
