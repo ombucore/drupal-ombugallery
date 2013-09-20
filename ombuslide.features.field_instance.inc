@@ -44,31 +44,31 @@ function ombuslide_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_slide-field_image'
-  $field_instances['field_collection_item-field_slide-field_image'] = array(
+  // Exported field_instance: 'field_collection_item-field_slide-field_slide_image'
+  $field_instances['field_collection_item-field_slide-field_slide_image'] = array(
     'bundle' => 'field_slide',
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'field_collection_item',
-    'field_name' => 'field_image',
+    'field_name' => 'field_slide_image',
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
-      'file_directory' => 'slide',
+      'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
       'max_resolution' => '',
@@ -81,18 +81,24 @@ function ombuslide_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          0 => 'public',
-          1 => 'private',
+          'public' => 'public',
         ),
         'allowed_types' => array(
-          0 => 'image',
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
         ),
-        'browser_plugins' => array(),
-        'preview_image_style' => 'thumbnail',
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 'media_internet',
+          'upload' => 'upload',
+        ),
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 1,
+      'weight' => 0,
     ),
   );
 
@@ -126,7 +132,7 @@ function ombuslide_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -160,7 +166,7 @@ function ombuslide_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
