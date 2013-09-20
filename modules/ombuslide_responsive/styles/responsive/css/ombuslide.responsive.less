@@ -1,3 +1,24 @@
+.opacity(@opacity: 1) {
+  @ieOpacity: @opacity * 100;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@{ieOpacity})";
+  filter: ~"alpha(opacity=@{ieOpacity})";
+  opacity: @opacity;
+}
+
+.background-color-rgba(@color, @alpha) {
+  @alphacolor: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+  @ieAlphacolor: argb(@alphacolor);
+
+  background-color: @color; // Fallback for older browsers
+  background-color: @alphacolor;
+
+  // IE hacks
+  zoom: 1; // hasLayout
+  background-color: transparent\9;
+  -ms-filter:  "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieAlphacolor}, endColorstr=@{ieAlphacolor})"; // IE 8+
+      filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieAlphacolor}, endColorstr=@{ieAlphacolor})"; // IE 6 & 7
+}
+
 .image-force-height-proportional() {
   .slide-image-outer, .slides-nav {
     position: relative;
@@ -72,7 +93,7 @@
   img {
     width: 100%;
     height: 100%;
-    opacity: 0;
+    .opacity(0);
   }
 }
 
@@ -129,7 +150,7 @@
   .group-caption {
     padding: 15px;
     white-space: normal;
-    background-color: rgba(0, 0, 0, 0.5);
+    .background-color-rgba(black, 0.5);
     color: white;
 
     * {
@@ -238,13 +259,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        opacity: 0;
+        .opacity(0);
         transition: opacity 0.3s ease;
       }
 
       &:hover {
         .group-caption {
-          opacity: 1;
+          .opacity(1);
         }
       }
     }
