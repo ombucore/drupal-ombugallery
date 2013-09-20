@@ -1,5 +1,5 @@
 (function ($) {
-  Drupal.behaviors.ombuslide = {
+  Drupal.behaviors.ombuslideResponsive = {
     attach: function(context, settings) {
 
       // On click handler for slide anchor links
