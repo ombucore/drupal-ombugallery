@@ -42,8 +42,13 @@ function ombuslide_bean_types() {
  */
 function ombuslide_theme($existing, $type, $theme, $path) {
   return array(
-    'ombuslide_collection' => array(
-      'variables' => array('items' => NULL, 'use_pager' => TRUE),
+    'ombuslide_collection_default' => array(
+      'variables' => array(
+        'items' => NULL,
+        'use_pager' => TRUE,
+        'settings' => NULL,
+        'style' => NULL,
+      ),
     ),
   );
 }
@@ -83,6 +88,16 @@ function field_collection_contextual_links_view_alter(&$element, &$items) {
           }
         }
       }
+
+      // Add slide indicator to contextual links
+      if ($element['#element']['#field']['field_name'] === 'field_slide') {
+        $element['#links'] = array(
+          'bean-type' => array(
+            'title' => t('Slide'),
+            'href' => current_path(),
+          ),
+        ) + $element['#links'];
+      }
     }
   }
 }
@@ -95,8 +110,57 @@ function ombuslide_field_formatter_info() {
     'ombuslide_collection' => array(
       'label' => t('Slideshow'),
       'field types' => array('field_collection'),
+      'settings' => array(
+        'style' => 'default',
+        'style_options' => '{}',
+      )
     ),
   );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function ombuslide_field_formatter_settings_form($field, $instance, $view_mode,
+$form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  if ($display['type'] == 'ombuslide_collection') {
+      $elements = array();
+
+    foreach (module_invoke_all('ombuslide_styles') as $k => $v) {
+      $styles[$k] = $v['label'];
+    }
+
+    $elements['style'] = array(
+      '#title' => t('Style'),
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#options' => $styles,
+      '#default_value' => $settings['style'],
+    );
+
+    $elements['style_options'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Options for the style that will render the slidehow. Must
+      be valid JSON.'),
+      '#default_value' => $settings['style_options'],
+    );
+
+    return $elements;
+  }
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function ombuslide_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  if ($display['type'] == 'ombuslide_collection') {
+      $settings = $display['settings'];
+      return implode('-', $settings);
+  }
 }
 
 /**
@@ -107,6 +171,18 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
 
   switch ($display['type']) {
     case 'ombuslide_collection':
+
+      $styles = ombuslide_get_style();
+
+      // Use the default style by default.
+      if(empty($display['settings']['style'])) {
+        $display['settings']['style'] = 'default';
+      }
+
+      // If the entity defines a style, use it.
+      if(isset($entity->style)) {
+        $display['settings']['style'] = $entity->style;
+      }
 
       $list_items = array();
       foreach ($items as $delta => $item) {
@@ -137,10 +213,18 @@ function ombuslide_field_formatter_view($entity_type, $entity, $field, $instance
           );
         }
       }
+
+      $formatter_settings = (array) json_decode($display['settings']['style_options']);
+      $style_default_settings  = (array)
+        json_decode($styles[$display['settings']['style']]['default_settings']);
+      $settings = array_merge($style_default_settings, $formatter_settings);
+
       $element = array(
-        '#theme' => 'ombuslide_collection',
+        '#theme' => $styles[$display['settings']['style']]['theme_function'],
+        '#style' => $display['settings']['style'],
         '#items' => $list_items,
         '#use_pager' => TRUE,
+        '#settings' => $settings,
       );
       break;
   }
@@ -170,7 +254,7 @@ function ombuslide_block_view_alter(&$data, $block) {
   // Add "add" link to block contextual links.
   if ($block->module == 'bean' && isset($data['content']) && is_array($data['content']) && array_key_exists('bean', $data['content'])) {
     foreach ($data['content']['bean'] as $id => $bean) {
-      if ($bean['#bundle'] == 'ombuslide') {
+      if (!empty($bean['#bundle']) && $bean['#bundle'] == 'ombuslide') {
         $field = field_info_field('field_slide');
         $path = field_collection_field_get_path($field);
         $data['content']['#contextual_links']['field_collection'] = array($path . '/add', array('bean', $id));
@@ -186,10 +270,23 @@ function ombuslide_form_bean_form_alter(&$form, $form_state) {
   // provide a simpler form for ordering and editing slides.
   if ($form['#bundle'] == 'ombuslide') {
     $path = drupal_get_path('module', 'ombuslide');
-    drupal_add_js($path . '/js/ombuslide.admin.js');
+    drupal_add_js($path . '/ombuslide.admin.js');
     drupal_add_css($path . '/ombuslide.admin.css');
     $form['#submit'][] = 'ombuslide_form_bean_form_submit';
   }
+}
+
+/**
+ * Implements hook_ombuslide_styles().
+ */
+function ombuslide_ombuslide_styles() {
+  return array(
+    'default' => array(
+      'label'          => 'Default',
+      'theme_function' => 'ombuslide_collection_default',
+      'default_settings' => '',
+    )
+  );
 }
 
 /**
@@ -207,11 +304,16 @@ function ombuslide_form_bean_form_submit($form, &$form_state) {
  *
  * Themes a field collection as a ombuslide.
  */
-function theme_ombuslide_collection($variables) {
+function theme_ombuslide_collection_default($variables) {
   $items     = $variables['items'];
   $use_pager = $variables['use_pager'];
+  $settings  = $variables['settings'];
 
   $output = '';
+
+  if (!$items) {
+    return $output;
+  }
 
   $items = array();
   foreach ($variables['items'] as $item) {
@@ -221,15 +323,78 @@ function theme_ombuslide_collection($variables) {
 
   $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
 
+  $classes = 'ombuslide ombuslide-' . $variables['style'];
+
   // Add unique id.
   $id = drupal_html_id('ombuslide');
-  $output = '<div id="' . $id . '" class="ombuslide well">' . $output . '</div><div class="clearfix"></div>';
+  $output = '<div id="' . $id . '" class="' . $classes . '">' . $output . '</div><div class="clearfix"></div>';
 
-  // Add js
-  $path = drupal_get_path('module', 'ombuslide') . '/js';
-  drupal_add_js($path . '/jquery.cycle.all.js');
-  drupal_add_js($path . '/ombuslide.js');
+  // Add js.
+  $path = drupal_get_path('module', 'ombuslide') . '/styles/default';
+  drupal_add_js($path . '/js/jquery.cycle.all.js');
+  drupal_add_js($path . '/js/ombuslide.js');
   drupal_add_js(array('ombuslide' => array($id => array())), 'setting');
 
+  // Default values. These are overriden by those from the formatter settings
+  // form.
+  $opts = array(
+    'timeout' => 0,
+    'next' => '#ombuslide .next',
+    'prev' => '#ombuslide .prev',
+    'width' => 'auto',
+    'height' => 'auto',
+    'speed' => '300',
+  );
+
+  /* drupal_add_js(array('ombuslide' => $opts, 'setting')); */
+  drupal_add_js(array('ombuslide' => array($id => $settings)), 'setting');
+  drupal_add_css($path . '/css/ombuslide.default.css');
+
   return $output;
+}
+
+/**
+ * Helper function to create a slide (which is a field_collection).
+ */
+function ombuslide_create_slide($bean, $image_path = NULL, $title = NULL, $description = NULL) {
+
+  $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_slide'));
+  $field_collection_item->setHostEntity('bean', $bean);
+
+  if ($image_path) {
+    $directory = file_default_scheme() . '://slide';
+    file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+    $file = file_save_data(file_get_contents($image_path), $directory . '/slide.jpg');
+    $field_collection_item->field_image[LANGUAGE_NONE][] = (array)$file;
+  }
+  if ($title ) {
+    $field_collection_item->field_slide_title[LANGUAGE_NONE][]['value'] = $title;
+  }
+  if ($description) {
+    $field_collection_item->field_slide_text[LANGUAGE_NONE][] = array(
+      'value' => $description,
+      'format' => 'default',
+    );
+  }
+  if ($link) {
+    $field_collection_item->field_link[LANGUAGE_NONE][] = $link;
+  }
+  $field_collection_item->save();
+
+  return $field_collection_item;
+}
+
+/**
+ * Get ombuslide styles
+ * $style The style key. If empty, returns all styles
+ */
+function ombuslide_get_style($style = NULL) {
+  static $styles;
+  $styles = module_invoke_all('ombuslide_styles');
+  if ($style) {
+    return $styles[$style];
+  }
+  else {
+    return $styles;
+  }
 }
