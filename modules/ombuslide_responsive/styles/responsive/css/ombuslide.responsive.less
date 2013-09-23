@@ -205,7 +205,9 @@
 
   &.transition-slide {
     .slides {
-      transition: left 0.3s ease;
+      // Use jQuery animation rather than transitions, until we can rely
+      // on the transition property being well-supported (i.e., > IE9)
+      // transition: left 0.3s ease;
     }
   }
 
