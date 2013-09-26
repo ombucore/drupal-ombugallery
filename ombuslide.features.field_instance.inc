@@ -44,8 +44,8 @@ function ombuslide_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_slide-field_slide_image'
-  $field_instances['field_collection_item-field_slide-field_slide_image'] = array(
+  // Exported field_instance: 'field_collection_item-field_slide-field_image'
+  $field_instances['field_collection_item-field_slide-field_image'] = array(
     'bundle' => 'field_slide',
     'deleted' => 0,
     'description' => '',
@@ -62,7 +62,7 @@ function ombuslide_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'field_collection_item',
-    'field_name' => 'field_slide_image',
+    'field_name' => 'field_image',
     'label' => 'Image',
     'required' => 0,
     'settings' => array(

@@ -72,7 +72,11 @@
   function advanceSlide($container, index) {
     // Set the left position of the corresponding slide; transition rules
     // in the CSS file will handle the animation
-    $container.find('.slides').css('left', (index * -100) + '%');
+    if(!Modernizr.csstransitions) {
+      $container.find('.slides').animate({left: (index * -100) + '%'}, 300);
+    } else {
+      $container.find('.slides').css('left', (index * -100) + '%');
+    }
 
     // Set this nav link to the active state and all others to inactive
     $container.find('.slides-nav li').removeClass('active');
