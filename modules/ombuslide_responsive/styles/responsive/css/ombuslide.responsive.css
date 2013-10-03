@@ -110,7 +110,7 @@
   color: black;
 }
 .ombuslide-responsive.transition-slide .slides {
-  transition: left 0.3s ease;
+  transition: left 0.6s ease;
 }
 .ombuslide-responsive.image-force-height-proportional .slide-image-outer,
 .ombuslide-responsive.image-force-height-proportional .slides-nav {

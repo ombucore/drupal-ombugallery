@@ -73,7 +73,7 @@
     // Set the left position of the corresponding slide; transition rules
     // in the CSS file will handle the animation
     if(!Modernizr.csstransitions) {
-      $container.find('.slides').animate({left: (index * -100) + '%'}, 300);
+      $container.find('.slides').animate({left: (index * -100) + '%'}, 600);
     } else {
       $container.find('.slides').css('left', (index * -100) + '%');
     }
