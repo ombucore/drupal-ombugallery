@@ -79,6 +79,8 @@ function theme_ombuslide_collection_carousel($variables) {
   foreach ($variables['items'] as $item) {
     $field_collection_item = $item['data']['#field_collection_item'];
 
+    $dom_id = 'ombuslide-carousel-' . $field_collection_item->item_id;
+
     // Change image style to carousel style.
     $image =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_image'][0];
 
@@ -95,7 +97,7 @@ function theme_ombuslide_collection_carousel($variables) {
     // Add item and its anchor link to item list array
     $items[] = $item;
     $nav[] = array(
-      'data' => '<a href="#' . $dom_id . '"><span>Slide ' . ($i + 1) . '</span></a>',
+      'data' => '<a href="#' . $dom_id . '"><span>Slide ' . ($index + 1) . '</span></a>',
       'class' => $index++ == 0 ? array('active') : array(),
     );
   }
