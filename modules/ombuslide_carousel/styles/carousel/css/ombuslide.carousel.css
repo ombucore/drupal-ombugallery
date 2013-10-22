@@ -1,9 +1,6 @@
 aside[data-module="bean"].ombuslide .carousel {
   text-align: center;
 }
-aside[data-module="bean"].ombuslide .carousel .horizontal-scroll {
-  padding-bottom: 2.0em;
-}
 aside[data-module="bean"].ombuslide .carousel .horizontal-scroll > .anchor-links {
   display: none;
 }
@@ -30,7 +27,6 @@ aside[data-module="bean"].ombuslide .carousel .horizontal-scroll-inner > ul li .
 @media all and (min-width: 990px) {
   aside[data-module="bean"].ombuslide .carousel .horizontal-scroll {
     position: relative;
-    padding-bottom: 30px;
   }
   aside[data-module="bean"].ombuslide .carousel .horizontal-scroll > .anchor-links {
     display: block;
