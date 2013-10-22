@@ -88,6 +88,13 @@ function theme_ombuslide_collection_carousel($variables) {
     $image['#prefix'] = '<div id="' . $dom_id . '" class="slide-image-outer"><div class="slide-image-inner">';
     $image['#suffix'] = '</div></div>';
 
+    // Wrap all content with link.
+    $link =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_link'][0];
+    if ($link) {
+      $item['data']['#prefix'] = '<a href="' . $link['#element']['url'] . '">';
+      $item['data']['#suffix'] = '</a>';
+    }
+
     // Render the contents of the item
     $item['data'] = drupal_render($item['data']);
 
@@ -96,7 +103,7 @@ function theme_ombuslide_collection_carousel($variables) {
 
     // Add item and its anchor link to item list array
     $items[] = $item;
-    $nav[] = array(
+    $nav_items[] = array(
       'data' => '<a href="#' . $dom_id . '"><span>Slide ' . ($index + 1) . '</span></a>',
       'class' => $index++ == 0 ? array('active') : array(),
     );
@@ -111,8 +118,8 @@ function theme_ombuslide_collection_carousel($variables) {
   $listing = array(
     '#theme' => 'item_list',
     '#items' => $items,
-    '#prefix' => '<div class="horizontal-scroll"><div class="horizontal-scroll-inner">',
-    '#suffix' => '</div><div class="anchor-links">' . $anchor_links . '</div></div>',
+    '#prefix' => '<div class="carousel"><div class="horizontal-scroll"><div class="horizontal-scroll-inner">',
+    '#suffix' => '</div><div class="anchor-links">' . $anchor_links . '</div></div></div>',
   );
   $output = drupal_render($listing);
 
