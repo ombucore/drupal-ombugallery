@@ -228,6 +228,19 @@
     }
   }
 
+  &.transition-fade {
+    .slides-list {
+      position: relative;
+
+      > li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
   // Image handling
 
   &.image-force-height-proportional {

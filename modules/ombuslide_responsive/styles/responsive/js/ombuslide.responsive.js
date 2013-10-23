@@ -20,7 +20,14 @@
       });
 
       // Set the first slide link to active for each ombuslide
+      $('.ombuslide-responsive .slides-list > li:first-child', context).addClass('active');
       $('.ombuslide-responsive .slides-nav li:first-child', context).addClass('active');
+
+      // Default all transition-fade slides to hidden then advance to the first one
+      $('.ombuslide-responsive.transition-fade .slides-list > li').hide().css('visibility', 'visible');
+      $('.ombuslide-responsive.transition-fade', context).each(function(index) {
+        advanceSlide($(this), 0);
+      });
 
       // Swap in high-res images if screen size allows
       if (window.screen.width > 640) {
@@ -70,13 +77,29 @@
   }
 
   function advanceSlide($container, index) {
-    // Set the left position of the corresponding slide; transition rules
-    // in the CSS file will handle the animation
-    if(!Modernizr.csstransitions) {
-      $container.find('.slides').animate({left: (index * -100) + '%'}, 600);
-    } else {
-      $container.find('.slides').css('left', (index * -100) + '%');
+
+    var $slideActive = $container.find('.slides-list > li').eq(index);
+
+    if ($container.hasClass('transition-slide')) {
+
+      // Set the left position of the corresponding slide; transition rules
+      // in the CSS file will handle the animation
+      if(!Modernizr.csstransitions) {
+        $container.find('.slides').animate({left: (index * -100) + '%'}, 600);
+      } else {
+        $container.find('.slides').css('left', (index * -100) + '%');
+      }
     }
+    else if ($container.hasClass('transition-fade')) {
+
+      // Fade in the active slide and fade out all others
+      $slideActive.stop().fadeIn(600);
+      $container.find('.slides-list > li').not($slideActive).stop().fadeOut(600);
+    }
+
+    // Set this slide to the active state and all others to inactive
+    $container.find('.slides-list > li').removeClass('active');
+    $slideActive.addClass('active');
 
     // Set this nav link to the active state and all others to inactive
     $container.find('.slides-nav li').removeClass('active');
