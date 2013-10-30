@@ -116,9 +116,6 @@
   position: relative;
 }
 .ombuslide-responsive.transition-fade .slides-list > li {
-  position: absolute;
-  top: 0;
-  left: 0;
   visibility: hidden;
 }
 .ombuslide-responsive.image-force-height-proportional .slide-image-outer,

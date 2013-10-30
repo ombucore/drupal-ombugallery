@@ -76,6 +76,8 @@
     }
   }
 
+  var delay = 0;
+
   function advanceSlide($container, index) {
 
     var $slideActive = $container.find('.slides-list > li').eq(index);
@@ -93,8 +95,9 @@
     else if ($container.hasClass('transition-fade')) {
 
       // Fade in the active slide and fade out all others
-      $slideActive.stop().fadeIn(600);
       $container.find('.slides-list > li').not($slideActive).stop().fadeOut(600);
+      $slideActive.stop().delay(delay).fadeIn(600);
+      if (delay <= 0) { delay = 600; }
     }
 
     // Set this slide to the active state and all others to inactive
