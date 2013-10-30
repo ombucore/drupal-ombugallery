@@ -118,7 +118,7 @@ function theme_ombuslide_collection_carousel($variables) {
   $listing = array(
     '#theme' => 'item_list',
     '#items' => $items,
-    '#prefix' => '<div class="carousel"><div class="horizontal-scroll"><div class="horizontal-scroll-inner">',
+    '#prefix' => '<div class="carousel"><div class="horizontal-scroll count-' . count($items) . '"><div class="horizontal-scroll-inner">',
     '#suffix' => '</div><div class="anchor-links">' . $anchor_links . '</div></div></div>',
   );
   $output = drupal_render($listing);

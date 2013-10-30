@@ -142,6 +142,17 @@ aside[data-module="bean"].ombuslide .carousel .horizontal-scroll-inner > ul li .
     width: 32%;
     margin: 0 2% 0 -0.25em;
   }
+  aside[data-module="bean"].ombuslide.span6 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span7 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span8 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span6 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span7 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span8 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span6 .count-3 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span7 .count-3 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span8 .count-3 > .anchor-links {
+    display: none;
+  }
   aside[data-module="bean"].ombuslide.span9 .carousel .horizontal-scroll > .anchor-links ul li,
   aside[data-module="bean"].ombuslide.span10 .carousel .horizontal-scroll > .anchor-links ul li,
   aside[data-module="bean"].ombuslide.span11 .carousel .horizontal-scroll > .anchor-links ul li {
@@ -158,6 +169,20 @@ aside[data-module="bean"].ombuslide .carousel .horizontal-scroll-inner > ul li .
     width: 23.5%;
     margin: 0 2% 0 -0.25em;
   }
+  aside[data-module="bean"].ombuslide.span9 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span10 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span11 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span9 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span10 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span11 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span9 .count-3 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span10 .count-3 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span11 .count-3 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span9 .count-4 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span10 .count-4 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span11 .count-4 > .anchor-links {
+    display: none;
+  }
   aside[data-module="bean"].ombuslide.span12 .carousel .horizontal-scroll > .anchor-links ul li {
     display: none;
   }
@@ -167,5 +192,12 @@ aside[data-module="bean"].ombuslide .carousel .horizontal-scroll-inner > ul li .
   aside[data-module="bean"].ombuslide.span12 .carousel .horizontal-scroll-inner > ul li {
     width: 18.4%;
     margin: 0 2% 0 -0.25em;
+  }
+  aside[data-module="bean"].ombuslide.span12 .count-1 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span12 .count-2 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span12 .count-3 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span12 .count-4 > .anchor-links,
+  aside[data-module="bean"].ombuslide.span12 .count-5 > .anchor-links {
+    display: none;
   }
 }
