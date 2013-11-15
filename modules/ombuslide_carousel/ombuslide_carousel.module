@@ -1,0 +1,130 @@
+<?php
+
+/**
+ * @file
+ * Carousel style for ombuslide.module
+ */
+
+/**
+ * Implements hook_library().
+ */
+function ombuslide_carousel_library() {
+
+  $path = drupal_get_path('module', 'ombuslide_carousel') . '/styles/carousel';
+  $libraries['ombuslide_carousel'] = array(
+    'title' => 'Ombuslide: carousel',
+    'version' => '1.0',
+    'js' => array(
+      $path . '/js/ombuslide.carousel.js' => array(),
+    ),
+    'css' => array(
+      $path . '/css/ombuslide.carousel.css' => array(),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_ombuslide_styles().
+ */
+function ombuslide_carousel_ombuslide_styles() {
+  return array(
+    'carousel' => array(
+      'label'          => 'Carousel',
+      'theme_function' => 'ombuslide_collection_carousel',
+      'default_settings' => '
+        {"slide_inderval"   : 500,
+        "transition"       : 1,
+        "transition_speed" : 700,
+        "image_protect"    : 0,
+        "pause_hover"      : 1,
+        "slide_links"      : false }',
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ombuslide_carousel_theme($existing, $type, $theme, $path) {
+  return array(
+    'ombuslide_collection_carousel' => array(
+      'variables' => array(
+        'items' => NULL,
+        'use_pager' => TRUE,
+        'settings' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Theme callback for the carousel slideshow style.
+ */
+function theme_ombuslide_collection_carousel($variables) {
+  $output    = '';
+  $items     = $variables['items'];
+  $settings  = $variables['settings'];
+
+  $settings['slides'] = array();
+
+  if (!$items) {
+    return FALSE;
+  }
+
+  $index = 0;
+  $items = array();
+  $nav_items = array();
+  foreach ($variables['items'] as $item) {
+    $field_collection_item = $item['data']['#field_collection_item'];
+
+    $dom_id = 'ombuslide-carousel-' . $field_collection_item->item_id;
+
+    // Change image style to carousel style.
+    $image =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_image'][0];
+
+    // Wrap the image to enable client-side scaling, positioning, and cropping
+    $image['#prefix'] = '<div id="' . $dom_id . '" class="slide-image-outer"><div class="slide-image-inner">';
+    $image['#suffix'] = '</div></div>';
+
+    // Wrap all content with link.
+    $link =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_link'][0];
+    if ($link) {
+      $item['data']['#prefix'] = '<a href="' . $link['#element']['url'] . '">';
+      $item['data']['#suffix'] = '</a>';
+    }
+
+    // Render the contents of the item
+    $item['data'] = drupal_render($item['data']);
+
+    // Assign an ID that can be used by the anchor links
+    $item['id'] = drupal_html_id('slide');
+
+    // Add item and its anchor link to item list array
+    $items[] = $item;
+    $nav_items[] = array(
+      'data' => '<a href="#' . $dom_id . '"><span>Slide ' . ($index + 1) . '</span></a>',
+      'class' => $index++ == 0 ? array('active') : array(),
+    );
+  }
+
+  $anchor_links = theme('item_list', array(
+    'items' => $nav_items,
+    'attributes' => array(
+      'class' => array('anchor-links-list'),
+    ),
+  ));
+  $listing = array(
+    '#theme' => 'item_list',
+    '#items' => $items,
+    '#prefix' => '<div class="carousel"><div class="horizontal-scroll count-' . count($items) . '"><div class="horizontal-scroll-inner">',
+    '#suffix' => '</div><div class="anchor-links">' . $anchor_links . '</div></div></div>',
+  );
+  $output = drupal_render($listing);
+
+  // Add library
+  drupal_add_library('ombuslide_carousel', 'ombuslide_carousel');
+
+  return $output;
+}

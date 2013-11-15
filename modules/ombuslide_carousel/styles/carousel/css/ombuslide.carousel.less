@@ -1,0 +1,212 @@
+// Mixin to generate appropriate widths, gutters, etc. for blocks
+// of various span widths
+
+.horizontal-scroll-styles(@count, @width, @gutter) {
+  .carousel {
+    .horizontal-scroll > .anchor-links ul li {
+      display: none;
+      @nthchild: e("@{count}n+1");
+
+      &:nth-child(@nthchild) {
+        display: inline-block;
+      }
+    }
+
+    .horizontal-scroll-inner > ul li {
+      width: @width;
+      margin: 0 @gutter 0 -0.25em;
+    }
+  }
+}
+
+aside[data-module="bean"].ombuslide {
+  .carousel {
+    text-align: center;
+
+    .horizontal-scroll {
+      > .anchor-links {
+        display: none;
+      }
+    }
+
+    .horizontal-scroll-inner {
+      > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin-bottom: 3.0em;
+
+          a {
+            font-weight: 600;
+          }
+
+          .field-name-field-image {
+            margin-bottom: 1.0em;
+
+            img {
+              display: block;
+              margin: 0 auto;
+              width: auto;
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Desktop only
+
+@media all and (min-width: 990px) {
+
+  aside[data-module="bean"].ombuslide {
+    .carousel {
+      .horizontal-scroll {
+        position: relative;
+
+        > .anchor-links {
+          display: block;
+          width: 100%;
+          pointer-events: none;
+
+          ul {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+
+            li {
+              margin: 0 -0.25em 0 0;
+              padding: 0;
+              display: inline-block;
+
+              a {
+                position: relative;
+                display: block;
+                width: 36px;
+                height: 24px;
+                padding: 0;
+                pointer-events: auto;
+                text-decoration: none;
+
+                span {
+                  display: none;
+                }
+
+                &:before, &:after {
+                  position: absolute;
+                  content: '\2B24';
+                  top: 0;
+                  left: 0;
+                  font-size: 24px;
+                  line-height: 24px;
+                  width: 100%;
+                  color: #ccc;
+                  text-align: center;
+                  transition: color 0.3s ease;
+                }
+
+                &:after {
+                  color: white;
+                  top: 7px;
+                  font-size: 13px;
+                  line-height: 13px;
+                }
+              }
+
+              &.active > a:after, > a:hover:after, > a:focus:after {
+                color: yellow;
+              }
+            }
+          }
+        }
+      }
+
+      .horizontal-scroll-inner {
+        overflow-x: hidden;
+
+        > ul {
+          white-space: nowrap;
+          margin-bottom: 20px;
+
+          li {
+            margin-bottom: 0;
+
+            .slide-image-outer {
+              position: relative;
+              width: 100%;
+              height: 0;
+              padding-top: 55%;
+            }
+
+            .slide-image-inner {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            }
+
+            .field-name-field-image {
+              height: 100%;
+              position: relative;
+              margin-bottom: 1.0em;
+
+              img {
+                height: 100%;
+              }
+            }
+          }
+
+          li {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+            margin: 0;
+            white-space: normal;
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.span6, &.span7, &.span8 {
+      .horizontal-scroll-styles(3, 32%, 2%);
+      .count-1, .count-2, .count-3 {
+        > .anchor-links {
+          display: none;
+        }
+      }
+    }
+
+    &.span9, &.span10, &.span11 {
+      .horizontal-scroll-styles(4, 23.5%, 2%);
+      .count-1, .count-2, .count-3, .count-4 {
+        > .anchor-links {
+          display: none;
+        }
+      }
+    }
+
+    &.span12 {
+      .horizontal-scroll-styles(5, 18.4%, 2%);
+      .count-1, .count-2, .count-3, .count-4, .count-5 {
+        > .anchor-links {
+          display: none;
+        }
+      }
+    }
+  }
+}

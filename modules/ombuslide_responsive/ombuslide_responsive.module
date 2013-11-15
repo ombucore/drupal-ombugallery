@@ -129,7 +129,7 @@ function theme_ombuslide_collection_responsive($variables) {
 
     // Add item and its anchor link to item list array
     $items[] = $item;
-    $nav_items[] = '<a href="#' . $item['id'] . '" class="load-item slide-nav-item">Slide ' . ($key + 1) . '</a>';
+    $nav_items[] = '<a href="#' . $item['id'] . '" class="load-item slide-nav-item"><span>Slide ' . ($key + 1) . '</span></a>';
   }
 
   $output .= '<div class="slides"><div class="slides-inner">' . theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides-list')))) . '</div></div>';

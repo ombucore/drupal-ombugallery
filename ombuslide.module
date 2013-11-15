@@ -64,6 +64,10 @@ function field_collection_contextual_links_view_alter(&$element, &$items) {
   // We only want our own contextual links
   if (isset($element['#element']['#field']['type']) && $element['#element']['#field']['type'] === 'field_collection') {
 
+    // For now remove contextual links for field collections.
+    $element['#links'] = array();
+    return;
+
     if (!empty($element['#element']['#display']['settings']) && !empty($element['#links'])) {
 
       $display_settings = $element['#element']['#display']['settings'];
