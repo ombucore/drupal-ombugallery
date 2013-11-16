@@ -26,20 +26,16 @@ function ombuslide_carousel_library() {
 }
 
 /**
- * Implements hook_ombuslide_styles().
+ * Implements hook_bean_styles().
  */
-function ombuslide_carousel_ombuslide_styles() {
+function ombuslide_carousel_bean_styles() {
   return array(
     'carousel' => array(
-      'label'          => 'Carousel',
-      'theme_function' => 'ombuslide_collection_carousel',
-      'default_settings' => '
-        {"slide_inderval"   : 500,
-        "transition"       : 1,
-        "transition_speed" : 700,
-        "image_protect"    : 0,
-        "pause_hover"      : 1,
-        "slide_links"      : false }',
+      'label' => 'Carousel',
+      'class' => 'CarouselBeanStyle',
+      'bean_types' => array(
+        'ombuslide',
+      ),
     ),
   );
 }
@@ -49,7 +45,7 @@ function ombuslide_carousel_ombuslide_styles() {
  */
 function ombuslide_carousel_theme($existing, $type, $theme, $path) {
   return array(
-    'ombuslide_collection_carousel' => array(
+    'ombuslide_carousel' => array(
       'variables' => array(
         'items' => NULL,
         'use_pager' => TRUE,
@@ -62,7 +58,7 @@ function ombuslide_carousel_theme($existing, $type, $theme, $path) {
 /**
  * Theme callback for the carousel slideshow style.
  */
-function theme_ombuslide_collection_carousel($variables) {
+function theme_ombuslide_carousel($variables) {
   $output    = '';
   $items     = $variables['items'];
   $settings  = $variables['settings'];
@@ -77,23 +73,7 @@ function theme_ombuslide_collection_carousel($variables) {
   $items = array();
   $nav_items = array();
   foreach ($variables['items'] as $item) {
-    $field_collection_item = $item['data']['#field_collection_item'];
-
-    $dom_id = 'ombuslide-carousel-' . $field_collection_item->item_id;
-
-    // Change image style to carousel style.
-    $image =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_image'][0];
-
-    // Wrap the image to enable client-side scaling, positioning, and cropping
-    $image['#prefix'] = '<div id="' . $dom_id . '" class="slide-image-outer"><div class="slide-image-inner">';
-    $image['#suffix'] = '</div></div>';
-
-    // Wrap all content with link.
-    $link =& $item['data']['entity']['field_collection_item'][$field_collection_item->item_id]['field_link'][0];
-    if ($link) {
-      $item['data']['#prefix'] = '<a href="' . $link['#element']['url'] . '">';
-      $item['data']['#suffix'] = '</a>';
-    }
+    $dom_id = $item['id'];
 
     // Render the contents of the item
     $item['data'] = drupal_render($item['data']);

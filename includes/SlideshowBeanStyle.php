@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Bean style for slideshows.
+ */
+
+class SlideshowBeanStyle extends BeanStyle {
+  /**
+   * Theme function to render slideshow.
+   *
+   * @param string
+   */
+  protected $theme_function = 'ombuslide_default';
+
+  /**
+   * Implements parent::prepareView().
+   */
+  public function prepareView($build) {
+    $build = parent::prepareView($build);
+
+    // Make sure to replace only the collection of items, not any additional
+    // fields on the entity.
+    $type = $build['#entity']->type;
+    switch ($type) {
+      case 'ombuslide':
+        $build['field_slide'] = array(
+          '#theme' => $this->theme_function,
+          '#items' => $this->items,
+        );
+        break;
+    }
+
+    return $build;
+  }
+
+  /**
+   * Implements parent::prepareItems().
+   */
+  protected function prepareItems($build, $type) {
+    switch ($type) {
+      case 'ombuslide':
+        $this->prepareFieldCollectionItems($build);
+        break;
+    }
+  }
+
+  /**
+   * Prepare items from a field collection for rendering in a slideshow.
+   */
+  protected function prepareFieldCollectionItems($build) {
+    foreach (element_children($build['field_slide']) as $delta) {
+      $this->items[] = array(
+        'data' => $build['field_slide'][$delta],
+        'class' => array('item-' . $delta),
+      );
+    }
+  }
+}
