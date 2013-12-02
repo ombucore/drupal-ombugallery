@@ -158,7 +158,7 @@ function theme_ombuslide_default($variables) {
 /**
  * Helper function to create a slide (which is a field_collection).
  */
-function ombuslide_create_slide($bean, $image_path = NULL, $title = NULL, $description = NULL) {
+function ombuslide_create_slide($bean, $image_path = NULL, $title = NULL, $description = NULL, $link = NULL) {
 
   $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_slide'));
   $field_collection_item->setHostEntity('bean', $bean);
