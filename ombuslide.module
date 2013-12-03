@@ -95,6 +95,17 @@ function ombuslide_bean_styles() {
 }
 
 /**
+ * Implements hook_bean_style_options_alter().
+ */
+function ombuslide_bean_style_options_alter(&$options, $context) {
+  // Remove default option for slideshows, since we always want a slideshow
+  // style displayed.
+  if ($context['bundle'] == 'ombuslide') {
+    unset($options['']);
+  }
+}
+
+/**
  * Submit callback for ombuslide form to redirect.
  */
 function ombuslide_form_bean_form_submit($form, &$form_state) {
