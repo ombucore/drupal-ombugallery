@@ -14,6 +14,13 @@ class SlideshowBeanStyle extends BeanStyle {
   protected $theme_function = 'ombuslide_default';
 
   /**
+   * Type of slideshow style.
+   *
+   * Added to default theme as class.
+   */
+  protected $slideshow_type = 'default';
+
+  /**
    * Implements parent::prepareView().
    */
   public function prepareView($build) {
@@ -27,6 +34,7 @@ class SlideshowBeanStyle extends BeanStyle {
         $build['field_slide'] = array(
           '#theme' => $this->theme_function,
           '#items' => $this->items,
+          '#type' => $this->slideshow_type,
         );
         break;
     }

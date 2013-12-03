@@ -45,6 +45,7 @@ function ombuslide_theme($existing, $type, $theme, $path) {
     'ombuslide_default' => array(
       'variables' => array(
         'items' => NULL,
+        'type' => NULL,
       ),
     ),
   );
@@ -137,7 +138,7 @@ function theme_ombuslide_default($variables) {
 
   $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
 
-  $classes = 'ombuslide ombuslide-slideshow';
+  $classes = 'ombuslide ombuslide-slideshow ombuslide-' . $variables['type'];
 
   // Add unique id.
   $id = drupal_html_id('ombuslide');
