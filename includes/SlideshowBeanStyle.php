@@ -23,12 +23,12 @@ class SlideshowBeanStyle extends BeanStyle {
   /**
    * Implements parent::prepareView().
    */
-  public function prepareView($build) {
-    $build = parent::prepareView($build);
+  public function prepareView($build, $bean) {
+    $build = parent::prepareView($build, $bean);
 
     // Make sure to replace only the collection of items, not any additional
     // fields on the entity.
-    $type = $build['#entity']->type;
+    $type = $this->bean->type;
     switch ($type) {
       case 'ombuslide':
         $build['field_slide'] = array(
