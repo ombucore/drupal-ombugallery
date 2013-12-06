@@ -126,42 +126,64 @@ function theme_ombuslide_default($variables) {
 
   $output = '';
 
+  // If there are no slides, return empty string.
   if (!$items) {
     return $output;
   }
 
+  // Otherwise, build up the slide items and their associated pager links.
   $items = array();
+  $pager = '';
+  $num = 0;
+
   foreach ($variables['items'] as $item) {
-    $item['data'] = drupal_render($item['data']);
-    $items[] = $item;
+
+    // Generate a unique ID for this slide.
+    $id = drupal_html_id('slide');
+
+    // Add a pager link for this slide.
+    $pager .= '<li><a href="#' . $id . '"><span>' . ++$num . '</span></a></li>';
+
+    // Set the ID, render the slide, and push it onto our list item array.
+    $item['data']['#attributes']['id'] = $id;
+    $items[] = drupal_render($item['data']);
   }
 
-  $output .= theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
+  // Generate the parent list element, the corresponding pager list, and
+  // previous/next links.
+  $id_slides = drupal_html_id('ombuslide-slides');
+  $id_pager = drupal_html_id('ombuslide-pager');
+  $id_prevnext = drupal_html_id('ombuslide-prevnext');
+  $slides = theme('item_list', array('items' => $items, 'attributes' => array('id' => $id_slides, 'class' => array('slides'))));
+  $pager = '<ul id="' . $id_pager . '" class="pager">' . $pager . '</ul>';
+  $prevnext = '<ul id="' . $id_prevnext . '" class="prevnext"><li class="prev"><a href="#"><span>Previous</span></a></li><li class="next"><a href="#"><span>Next</span></a></li></ul>';
 
-  $classes = 'ombuslide ombuslide-slideshow ombuslide-' . $variables['type'];
-
-  // Add unique id.
+  // Add unique id, classes, and assemble final output.
   $id = drupal_html_id('ombuslide');
-  $output = '<div id="' . $id . '" class="' . $classes . '">' . $output . '</div><div class="clearfix"></div>';
+  $classes = 'ombuslide ombuslide-slideshow ombuslide-' . $variables['type'];
+  $output = '<div id="' . $id . '" class="' . $classes . '">' . $slides . $prevnext . $pager . '</div>';
 
   // Add js.
   $path = drupal_get_path('module', 'ombuslide') . '/styles/default';
-  drupal_add_js($path . '/js/jquery.cycle.all.js');
+  drupal_add_js($path . '/js/jquery.cycle2.js');
   drupal_add_js($path . '/js/ombuslide.js');
-  drupal_add_js(array('ombuslide' => array($id => array())), 'setting');
+  drupal_add_js(array('ombuslide' => array($id_slides => array())), 'setting');
 
   // Default values. These are overriden by those from the formatter settings
-  // form.
+  // form.  See available options at http://jquery.malsup.com/cycle2/api/
   $opts = array(
     'timeout' => 0,
-    'next' => '#ombuslide .next',
-    'prev' => '#ombuslide .prev',
-    'width' => 'auto',
-    'height' => 'auto',
-    'speed' => '300',
+    'slides' => ' > li',
+    'prev' => '#' . $id_prevnext . ' > .prev > a',
+    'next' => '#' . $id_prevnext . ' > .next > a',
+    'pager' => '#' . $id_pager,
+    'pagerTemplate' => '',
+    'speed' => 600,
+    'manualSpeed' => 300,
+    'swipe' => true,
   );
 
-  drupal_add_js(array('ombuslide' => array($id => $opts)), 'setting');
+  drupal_add_js(array('ombuslide' => array($id_slides => $opts)), 'setting');
   drupal_add_css($path . '/css/ombuslide.default.css');
 
   return $output;

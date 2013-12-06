@@ -1,0 +1,108 @@
+.ombuslide[data-type="block"] {
+  margin-bottom: 50px;
+}
+.ombuslide[data-type="block"],
+.ombuslide[data-type="block"] *,
+.ombuslide[data-type="block"] *:before,
+.ombuslide[data-type="block"] *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ombuslide[data-type="block"] .entity.bean-ombuslide {
+  position: relative;
+}
+.ombuslide[data-type="block"] .slides,
+.ombuslide[data-type="block"] .prevnext,
+.ombuslide[data-type="block"] .pager {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ombuslide[data-type="block"] .slides > li,
+.ombuslide[data-type="block"] .prevnext > li,
+.ombuslide[data-type="block"] .pager > li {
+  margin: 0;
+  padding: 0;
+}
+.ombuslide[data-type="block"] .prevnext,
+.ombuslide[data-type="block"] .slides .content > div + div {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.ombuslide[data-type="block"]:hover .prevnext,
+.ombuslide[data-type="block"]:hover .slides .content > div + div {
+  opacity: 1;
+}
+.ombuslide[data-type="block"] .slides {
+  z-index: 1;
+}
+.ombuslide[data-type="block"] .slides > li {
+  width: 100%;
+}
+.ombuslide[data-type="block"] .slides > li img {
+  width: 100%;
+}
+.ombuslide[data-type="block"] .slides .content > div + div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1.0em;
+}
+.ombuslide[data-type="block"] .prevnext {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: green;
+  z-index: 2;
+}
+.ombuslide[data-type="block"] .prevnext > li {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.ombuslide[data-type="block"] .prevnext > li a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 0.5em;
+  text-align: center;
+}
+.ombuslide[data-type="block"] .prevnext > li.next {
+  left: auto;
+  right: 0;
+}
+.ombuslide[data-type="block"] .pager {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: right;
+  z-index: 3;
+}
+.ombuslide[data-type="block"] .pager > li {
+  display: inline-block;
+}
+.ombuslide[data-type="block"] .pager > li a {
+  font-family: sans-serif;
+  display: block;
+  padding: 1.0em 1.5em;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  color: #bbb;
+}
+.ombuslide[data-type="block"] .pager > li a:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
