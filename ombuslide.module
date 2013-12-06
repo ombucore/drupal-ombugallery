@@ -122,7 +122,7 @@ function ombuslide_form_bean_form_submit($form, &$form_state) {
  * Themes a field collection as a ombuslide.
  */
 function theme_ombuslide_default($variables) {
-  $items     = $variables['items'];
+  $items = $variables['items'];
 
   $output = '';
 
@@ -156,7 +156,7 @@ function theme_ombuslide_default($variables) {
   $id_prevnext = drupal_html_id('ombuslide-prevnext');
   $slides = theme('item_list', array('items' => $items, 'attributes' => array('id' => $id_slides, 'class' => array('slides'))));
   $pager = '<ul id="' . $id_pager . '" class="pager">' . $pager . '</ul>';
-  $prevnext = '<ul id="' . $id_prevnext . '" class="prevnext"><li class="prev"><a href="#"><span>Previous</span></a></li><li class="next"><a href="#"><span>Next</span></a></li></ul>';
+  $prevnext = '<ul id="' . $id_prevnext . '" class="prevnext"><li class="prev"><a href="#"><span>&lsaquo;</span></a></li><li class="next"><a href="#"><span>&rsaquo;</span></a></li></ul>';
 
   // Add unique id, classes, and assemble final output.
   $id = drupal_html_id('ombuslide');

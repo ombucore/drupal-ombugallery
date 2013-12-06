@@ -22,98 +22,105 @@
     }
   }
 
-  .prevnext, .slides .content > div + div {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover {
-    .prevnext, .slides .content > div + div {
-      opacity: 1;
-    }
-  }
-
   .slides {
+    background-color: rgb(40, 40, 40);
     z-index: 1;
 
     > li {
       width: 100%;
 
+      // Avoid FOUC by hiding all slides except the first.
+      display: none;
+
       img {
         width: 100%;
+      }
+
+      &.first {
+        display: block;
       }
     }
 
     // TO DO: Select groups by class, like UO.
-
     .content > div + div {
-      position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
       color: white;
       padding: 1.0em;
     }
   }
 
-  .prevnext {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .pager {
     width: 100%;
-    background-color: green;
-    z-index: 2;
+    text-align: center;
+    padding: 0 40px;
+    background-color: rgb(60, 60, 60);
+  }
+
+  .pager, .prevnext {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 40px;
 
     > li {
-      position: absolute;
-      top: 0;
-      left: 0;
+      display: inline-block;
 
-      a {
-        display: block;
-        width: 100px;
-        height: 100px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        font-family: sans-serif;
-        font-size: 16px;
-        padding: 0.5em;
-        text-align: center;
+      &.prev, &.next {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 10000;
+
+        a {
+          font-size: 26px;
+          line-height: 36px;
+        }
       }
 
       &.next {
         left: auto;
         right: 0;
       }
-    }
-  }
-
-  .pager {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    text-align: right;
-    z-index: 3;
-
-    > li {
-      display: inline-block;
 
       a {
-        font-family: sans-serif;
         display: block;
-        padding: 1.0em 1.5em;
-        background-color: rgba(0, 0, 0, 0.7);
+        width: 40px;
+        height: 40px;
         text-align: center;
-        font-size: 16px;
-        line-height: 16px;
-        color: #bbb;
+        color: #999;
 
         &:hover {
           text-decoration: none;
-          background-color: rgba(0, 0, 0, 0.8);
           color: white;
+        }
+      }
+
+      &.cycle-pager-active {
+        a, a:hover {
+          color: yellow;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 992px) {
+
+  .ombuslide[data-type="block"] {
+    .pager, .prevnext {
+      font-size: 16px;
+      line-height: 50px;
+
+      > li {
+        &.prev, &.next {
+          a {
+            font-size: 36px;
+            line-height: 44px;
+          }
+        }
+
+        a {
+          width: 50px;
+          height: 50px;
         }
       }
     }
