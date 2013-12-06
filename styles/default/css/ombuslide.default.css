@@ -12,110 +12,89 @@
 .ombuslide[data-type="block"] .entity.bean-ombuslide {
   position: relative;
 }
-.ombuslide[data-type="block"] .slides,
-.ombuslide[data-type="block"] .prevnext,
-.ombuslide[data-type="block"] .pager {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.ombuslide[data-type="block"] .slides > li,
-.ombuslide[data-type="block"] .prevnext > li,
-.ombuslide[data-type="block"] .pager > li {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li {
   margin: 0;
   padding: 0;
 }
-.ombuslide[data-type="block"] .slides {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides {
   background-color: #282828;
-  z-index: 1;
 }
-.ombuslide[data-type="block"] .slides > li {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li {
   width: 100%;
   display: none;
 }
-.ombuslide[data-type="block"] .slides > li img {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li img {
   width: 100%;
 }
-.ombuslide[data-type="block"] .slides > li.first {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li.first {
   display: block;
 }
-.ombuslide[data-type="block"] .slides .content > div + div {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides .content > div + div {
   width: 100%;
   color: white;
   padding: 1.0em;
 }
-.ombuslide[data-type="block"] .pager {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager {
   width: 100%;
   text-align: center;
   padding: 0 40px;
   background-color: #3c3c3c;
 }
-.ombuslide[data-type="block"] .pager,
-.ombuslide[data-type="block"] .prevnext {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext {
   font-family: Verdana, Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 40px;
 }
-.ombuslide[data-type="block"] .pager > li,
-.ombuslide[data-type="block"] .prevnext > li {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li {
   display: inline-block;
 }
-.ombuslide[data-type="block"] .pager > li.prev,
-.ombuslide[data-type="block"] .prevnext > li.prev,
-.ombuslide[data-type="block"] .pager > li.next,
-.ombuslide[data-type="block"] .prevnext > li.next {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.prev,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.prev,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.next,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.next {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 10000;
 }
-.ombuslide[data-type="block"] .pager > li.prev a,
-.ombuslide[data-type="block"] .prevnext > li.prev a,
-.ombuslide[data-type="block"] .pager > li.next a,
-.ombuslide[data-type="block"] .prevnext > li.next a {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.prev a,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.prev a,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.next a,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.next a {
   font-size: 26px;
   line-height: 36px;
 }
-.ombuslide[data-type="block"] .pager > li.next,
-.ombuslide[data-type="block"] .prevnext > li.next {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.next,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.next {
   left: auto;
   right: 0;
 }
-.ombuslide[data-type="block"] .pager > li a,
-.ombuslide[data-type="block"] .prevnext > li a {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li a,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li a {
   display: block;
   width: 40px;
   height: 40px;
   text-align: center;
   color: #999;
 }
-.ombuslide[data-type="block"] .pager > li a:hover,
-.ombuslide[data-type="block"] .prevnext > li a:hover {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li a:hover,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li a:hover {
   text-decoration: none;
   color: white;
 }
-.ombuslide[data-type="block"] .pager > li.cycle-pager-active a,
-.ombuslide[data-type="block"] .prevnext > li.cycle-pager-active a,
-.ombuslide[data-type="block"] .pager > li.cycle-pager-active a:hover,
-.ombuslide[data-type="block"] .prevnext > li.cycle-pager-active a:hover {
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.cycle-pager-active a,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.cycle-pager-active a,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.cycle-pager-active a:hover,
+.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.cycle-pager-active a:hover {
   color: yellow;
-}
-@media all and (min-width: 992px) {
-  .ombuslide[data-type="block"] .pager,
-  .ombuslide[data-type="block"] .prevnext {
-    font-size: 16px;
-    line-height: 50px;
-  }
-  .ombuslide[data-type="block"] .pager > li.prev a,
-  .ombuslide[data-type="block"] .prevnext > li.prev a,
-  .ombuslide[data-type="block"] .pager > li.next a,
-  .ombuslide[data-type="block"] .prevnext > li.next a {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  .ombuslide[data-type="block"] .pager > li a,
-  .ombuslide[data-type="block"] .prevnext > li a {
-    width: 50px;
-    height: 50px;
-  }
 }

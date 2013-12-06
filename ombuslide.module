@@ -178,9 +178,10 @@ function theme_ombuslide_default($variables) {
     'next' => '#' . $id_prevnext . ' > .next > a',
     'pager' => '#' . $id_pager,
     'pagerTemplate' => '',
-    'speed' => 600,
-    'manualSpeed' => 300,
+    'speed' => 900,
+    'manualSpeed' => 600,
     'swipe' => true,
+    'fx' => 'scrollHorz'
   );
 
   drupal_add_js(array('ombuslide' => array($id_slides => $opts)), 'setting');

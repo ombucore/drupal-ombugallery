@@ -11,116 +11,92 @@
     position: relative;
   }
 
-  .slides, .prevnext, .pager {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    > li {
+  .ombuslide-slideshow.ombuslide-default {
+    .slides, .prevnext, .pager {
+      list-style: none;
       margin: 0;
       padding: 0;
-    }
-  }
-
-  .slides {
-    background-color: rgb(40, 40, 40);
-    z-index: 1;
-
-    > li {
-      width: 100%;
-
-      // Avoid FOUC by hiding all slides except the first.
-      display: none;
-
-      img {
-        width: 100%;
-      }
-
-      &.first {
-        display: block;
-      }
-    }
-
-    // TO DO: Select groups by class, like UO.
-    .content > div + div {
-      width: 100%;
-      color: white;
-      padding: 1.0em;
-    }
-  }
-
-  .pager {
-    width: 100%;
-    text-align: center;
-    padding: 0 40px;
-    background-color: rgb(60, 60, 60);
-  }
-
-  .pager, .prevnext {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    line-height: 40px;
-
-    > li {
-      display: inline-block;
-
-      &.prev, &.next {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 10000;
-
-        a {
-          font-size: 26px;
-          line-height: 36px;
-        }
-      }
-
-      &.next {
-        left: auto;
-        right: 0;
-      }
-
-      a {
-        display: block;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        color: #999;
-
-        &:hover {
-          text-decoration: none;
-          color: white;
-        }
-      }
-
-      &.cycle-pager-active {
-        a, a:hover {
-          color: yellow;
-        }
-      }
-    }
-  }
-}
-
-@media all and (min-width: 992px) {
-
-  .ombuslide[data-type="block"] {
-    .pager, .prevnext {
-      font-size: 16px;
-      line-height: 50px;
 
       > li {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .slides {
+      background-color: rgb(40, 40, 40);
+
+      > li {
+        width: 100%;
+
+        // Avoid FOUC by hiding all slides except the first.
+        display: none;
+
+        img {
+          width: 100%;
+        }
+
+        &.first {
+          display: block;
+        }
+      }
+
+      // TO DO: Select groups by class, like UO.
+      .content > div + div {
+        width: 100%;
+        color: white;
+        padding: 1.0em;
+      }
+    }
+
+    .pager {
+      width: 100%;
+      text-align: center;
+      padding: 0 40px;
+      background-color: rgb(60, 60, 60);
+    }
+
+    .pager, .prevnext {
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      line-height: 40px;
+
+      > li {
+        display: inline-block;
+
         &.prev, &.next {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+
           a {
-            font-size: 36px;
-            line-height: 44px;
+            font-size: 26px;
+            line-height: 36px;
           }
         }
 
+        &.next {
+          left: auto;
+          right: 0;
+        }
+
         a {
-          width: 50px;
-          height: 50px;
+          display: block;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          color: #999;
+
+          &:hover {
+            text-decoration: none;
+            color: white;
+          }
+        }
+
+        &.cycle-pager-active {
+          a, a:hover {
+            color: yellow;
+          }
         }
       }
     }
