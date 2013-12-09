@@ -1,6 +1,3 @@
-.ombuslide[data-type="block"] {
-  margin-bottom: 50px;
-}
 .ombuslide[data-type="block"],
 .ombuslide[data-type="block"] *,
 .ombuslide[data-type="block"] *:before,
@@ -12,89 +9,93 @@
 .ombuslide[data-type="block"] .entity.bean-ombuslide {
   position: relative;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager {
+.ombuslide[data-type="block"] .ombuslide-slideshow {
+  position: relative;
+  margin-bottom: 50px;
+}
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext,
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides > li,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li,
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li {
   margin: 0;
   padding: 0;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides {
   background-color: #282828;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides > li {
   width: 100%;
   display: none;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li img {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides > li img {
   width: 100%;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides > li.first {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides > li.first {
   display: block;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .slides .content > div + div {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides .content > div + div {
   width: 100%;
   color: white;
   padding: 1.0em;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager {
   width: 100%;
   text-align: center;
   padding: 0 40px;
   background-color: #3c3c3c;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext {
   font-family: Verdana, Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 40px;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li {
   display: inline-block;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.prev,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.prev,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.next,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.next {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.prev,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.prev,
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.next,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.next {
   position: absolute;
   bottom: 0;
   left: 0;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.prev a,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.prev a,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.next a,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.next a {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.prev a,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.prev a,
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.next a,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.next a {
   font-size: 26px;
   line-height: 36px;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.next,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.next {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.next,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.next {
   left: auto;
   right: 0;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li a,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li a {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li a,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li a {
   display: block;
   width: 40px;
   height: 40px;
   text-align: center;
   color: #999;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li a:hover,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li a:hover {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li a:hover,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li a:hover {
   text-decoration: none;
   color: white;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.cycle-pager-active a,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.cycle-pager-active a,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .pager > li.cycle-pager-active a:hover,
-.ombuslide[data-type="block"] .ombuslide-slideshow.ombuslide-default .prevnext > li.cycle-pager-active a:hover {
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.cycle-pager-active a,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.cycle-pager-active a,
+.ombuslide[data-type="block"] .ombuslide-slideshow .pager > li.cycle-pager-active a:hover,
+.ombuslide[data-type="block"] .ombuslide-slideshow .prevnext > li.cycle-pager-active a:hover {
   color: yellow;
 }

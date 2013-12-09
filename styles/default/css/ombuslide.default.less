@@ -1,5 +1,7 @@
 .ombuslide[data-type="block"] {
-  margin-bottom: 50px;
+
+  // Any rules at this level will apply to all ombuslide
+  // instances, regardless of the selected style.
 
   &, *, *:before, *:after {
     -moz-box-sizing: border-box;
@@ -11,7 +13,13 @@
     position: relative;
   }
 
-  .ombuslide-slideshow.ombuslide-default {
+  // Rules for specific styles will begin at .ombuslide-slideshow
+  // (e.g., .ombuslide-default, .ombuslide-panoramic).
+
+  .ombuslide-slideshow {
+    position: relative;
+    margin-bottom: 50px;
+
     .slides, .prevnext, .pager {
       list-style: none;
       margin: 0;
