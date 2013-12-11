@@ -172,14 +172,14 @@ function theme_ombuslide_default($variables) {
   // Default values. These are overriden by those from the formatter settings
   // form.  See available options at http://jquery.malsup.com/cycle2/api/
   $opts = array(
-    'timeout' => 0,
+    'timeout' => 6000,
     'slides' => ' > li',
     'autoHeight' => 'calc',
     'prev' => '#' . $id_prevnext . ' > .prev > a',
     'next' => '#' . $id_prevnext . ' > .next > a',
     'pager' => '#' . $id_pager,
     'pagerTemplate' => '',
-    'speed' => 900,
+    'speed' => 600,
     'manualSpeed' => 600,
     'swipe' => true,
     'fx' => 'scrollHorz'
