@@ -39,7 +39,7 @@
 .ombuslide[data-type="block"] .ombuslide-slideshow .slides > li.first {
   display: block;
 }
-.ombuslide[data-type="block"] .ombuslide-slideshow .slides .content > div + div {
+.ombuslide[data-type="block"] .ombuslide-slideshow .slides .group_secondary {
   width: 100%;
   color: white;
   padding: 1.0em;
