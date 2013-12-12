@@ -54,6 +54,7 @@ function ombuslide_field_group_info() {
     'children' => array(
       0 => 'field_slide_text',
       1 => 'field_slide_title',
+      1 => 'field_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
