@@ -8,6 +8,8 @@
  * Implements hook_field_group_info().
  */
 function ombuslide_field_group_info() {
+  $export = array();
+
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
@@ -54,7 +56,7 @@ function ombuslide_field_group_info() {
     'children' => array(
       0 => 'field_slide_text',
       1 => 'field_slide_title',
-      1 => 'field_link',
+      2 => 'field_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
