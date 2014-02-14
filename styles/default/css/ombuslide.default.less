@@ -1,7 +1,10 @@
-.ombuslide[data-type="block"] {
+.entity.bean-ombuslide {
+  position: relative;
+}
 
-  // Any rules at this level will apply to all ombuslide
-  // instances, regardless of the selected style.
+.ombuslide-slideshow {
+  position: relative;
+  margin-bottom: 50px;
 
   &, *, *:before, *:after {
     -moz-box-sizing: border-box;
@@ -9,103 +12,92 @@
     box-sizing: border-box;
   }
 
-  .entity.bean-ombuslide {
-    position: relative;
-  }
+  .slides, .prevnext, .pager {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-  // Rules for specific styles will begin at .ombuslide-slideshow
-  // (e.g., .ombuslide-default, .ombuslide-panoramic).
-
-  .ombuslide-slideshow {
-    position: relative;
-    margin-bottom: 50px;
-
-    .slides, .prevnext, .pager {
-      list-style: none;
+    > li {
       margin: 0;
       padding: 0;
-
-      > li {
-        margin: 0;
-        padding: 0;
-      }
     }
+  }
 
-    .slides {
-      background-color: rgb(40, 40, 40);
+  .slides {
+    background-color: rgb(40, 40, 40);
 
-      > li {
-        width: 100%;
-
-        // Avoid FOUC by hiding all slides except the first.
-        display: none;
-
-        img {
-          width: 100%;
-        }
-
-        &.first {
-          display: block;
-        }
-      }
-
-      .group_secondary {
-        width: 100%;
-        color: white;
-        padding: 1.0em;
-      }
-    }
-
-    .pager {
+    > li {
       width: 100%;
-      text-align: center;
-      padding: 0 40px;
-      background-color: rgb(60, 60, 60);
+
+      // Avoid FOUC by hiding all slides except the first.
+      display: none;
+
+      img {
+        width: 100%;
+      }
+
+      &.first {
+        display: block;
+      }
     }
 
-    .pager, .prevnext {
-      font-family: Verdana, Helvetica, Arial, sans-serif;
-      font-size: 13px;
-      line-height: 40px;
+    .group_secondary {
+      width: 100%;
+      color: white;
+      padding: 1.0em;
+    }
+  }
 
-      > li {
-        display: inline-block;
+  .pager {
+    width: 100%;
+    text-align: center;
+    padding: 0 40px;
+    background-color: rgb(60, 60, 60);
+  }
 
-        &.prev, &.next {
-          position: absolute;
-          bottom: 0;
-          left: 0;
+  .pager, .prevnext {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 40px;
 
-          a {
-            font-size: 26px;
-            line-height: 36px;
-          }
-        }
+    > li {
+      display: inline-block;
 
-        &.next {
-          left: auto;
-          right: 0;
-        }
+      &.prev, &.next {
+        position: absolute;
+        bottom: 0;
+        left: 0;
 
         a {
-          display: block;
-          width: 40px;
-          height: 40px;
-          text-align: center;
-          color: #999;
-
-          &:hover {
-            text-decoration: none;
-            color: white;
-          }
+          font-size: 26px;
+          line-height: 36px;
         }
+      }
 
-        &.cycle-pager-active {
-          a, a:hover {
-            color: yellow;
-          }
+      &.next {
+        left: auto;
+        right: 0;
+      }
+
+      a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        color: #999;
+
+        &:hover {
+          text-decoration: none;
+          color: white;
+        }
+      }
+
+      &.cycle-pager-active {
+        a, a:hover {
+          color: yellow;
         }
       }
     }
   }
 }
+
