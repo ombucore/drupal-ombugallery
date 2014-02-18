@@ -181,7 +181,6 @@ function theme_ombuslide_default($variables) {
     'pagerTemplate' => '',
     'speed' => 600,
     'manualSpeed' => 600,
-    'swipe' => true,
     'fx' => 'scrollHorz'
   );
 
