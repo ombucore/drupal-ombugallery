@@ -36,6 +36,13 @@
 .ombuslide-slideshow .slides > li img {
   width: 100%;
 }
+.ombuslide-slideshow .slides > li iframe {
+  display: block;
+  width: 100%;
+}
+.ombuslide-slideshow .slides > li small {
+  display: none;
+}
 .ombuslide-slideshow .slides > li.first {
   display: block;
 }
