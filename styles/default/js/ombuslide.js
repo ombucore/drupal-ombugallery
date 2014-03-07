@@ -5,34 +5,40 @@
       // Process each ombuslide slideshow on page.
       for (var slideshow in settings.ombuslide) {
 
-        // Get a handle to the slideshow.
-        var $slides = $('#' + slideshow, context);
-
-        // Only process slideshows that have one or more slides.
-        if ($(' > li', $slides).length > 1) {
-
-          // Get a handle to the slideshow container.
-          var $slideshow = $slides.parent();
-
-          var opts = Drupal.settings.ombuslide[slideshow];
-
-          // Instantiate jQuery Cycle 2 plugin.
-          $slides.cycle(opts)
-
-          // Pause the slideshow if the user clicks or hovers anywhere inside
-          // its container element.
-          $slideshow.on('click mouseover', function() {
-            $slides.cycle('pause');
-          });
-
-          // Resize the iframe on load and when the browse window is resized.
-          $(window).on('resize', function() {
-            resizeVideo($slideshow, $slideshow.find('.file-video iframe'))
-          });
-
-          resizeVideo($slideshow, $slideshow.find('.file-video iframe'))
-        }
+        // Instantiate a slideshow.
+        new Drupal.slideshow(slideshow, context, Drupal.settings.ombuslide[slideshow]);
       }
+    }
+  }
+
+  Drupal.slideshow = function(slideshow, context, opts) {
+
+    // Get a handle to the slideshow.
+    this.$slides = $('#' + slideshow, context);
+
+    // Only process slideshows that have one or more slides.
+    if ($(' > li', this.$slides).length > 1) {
+
+      // Get a handle to the slideshow container and remember the slideshow
+      // instance options.
+      this.$slideshow = this.$slides.parent();
+      this.opts = opts;
+
+      // Instantiate jQuery Cycle 2 plugin.
+      this.$slides.cycle(opts);
+
+      // Pause the slideshow if the user clicks or hovers anywhere inside
+      // its container element.
+      this.$slideshow.on('click mouseover', $.proxy(function(e) {
+        this.$slides.cycle('pause');
+      }, this));
+
+      // Resize the iframe on load and when the browse window is resized.
+      $(window).on('resize', $.proxy(function() {
+        resizeVideo(this.$slideshow, this.$slideshow.find('.file-video iframe'));
+      }, this));
+
+      resizeVideo(this.$slideshow, this.$slideshow.find('.file-video iframe'));
     }
   }
 
