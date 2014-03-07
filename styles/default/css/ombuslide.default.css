@@ -106,3 +106,9 @@
 .ombuslide-slideshow .prevnext > li.cycle-pager-active a:hover {
   color: yellow;
 }
+.ombuslide-slideshow[data-slide-count="0"] .pager,
+.ombuslide-slideshow[data-slide-count="1"] .pager,
+.ombuslide-slideshow[data-slide-count="0"] .prevnext,
+.ombuslide-slideshow[data-slide-count="1"] .prevnext {
+  display: none !important;
+}

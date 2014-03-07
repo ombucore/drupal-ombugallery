@@ -161,7 +161,7 @@ function theme_ombuslide_default($variables) {
   // Add unique id, classes, and assemble final output.
   $id = drupal_html_id('ombuslide');
   $classes = 'ombuslide ombuslide-slideshow ombuslide-' . $variables['type'];
-  $output = '<div id="' . $id . '" class="' . $classes . '">' . $slides . $prevnext . $pager . '</div>';
+  $output = '<div id="' . $id . '" class="' . $classes . '" data-slide-count="' . $num . '">' . $slides . $prevnext . $pager . '</div>';
 
   // Add js.
   $path = drupal_get_path('module', 'ombuslide') . '/styles/default';
