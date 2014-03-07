@@ -13,6 +13,9 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+.ombuslide-slideshow .field-name-field-caption {
+  display: none;
+}
 .ombuslide-slideshow .slides,
 .ombuslide-slideshow .prevnext,
 .ombuslide-slideshow .pager {
