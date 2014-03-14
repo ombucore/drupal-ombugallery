@@ -181,7 +181,8 @@ function theme_ombuslide_default($variables) {
     'pagerTemplate' => '',
     'speed' => 600,
     'manualSpeed' => 600,
-    'fx' => 'scrollHorz'
+    'fx' => 'scrollHorz',
+    'hideNonActive' => false
   );
 
   drupal_add_js(array('ombuslide' => array($id_slides => $opts)), 'setting');
