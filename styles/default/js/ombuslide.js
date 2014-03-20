@@ -30,6 +30,7 @@
       // Pause the slideshow if the user clicks or hovers anywhere inside
       // its container element.
       this.$slideshow.on('click mouseover', $.proxy(function(e) {
+        e.stopPropagation();
         this.$slides.cycle('pause');
       }, this));
 
