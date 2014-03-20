@@ -35,9 +35,6 @@
     > li {
       width: 100%;
 
-      // Avoid FOUC by hiding all slides except the first.
-      display: none;
-
       img {
         width: 100%;
       }
@@ -59,7 +56,7 @@
       }
 
       &.cycle-slide-active {
-        .group_secondary {
+        .group_primary, .group_secondary {
           > * {
             .opacity(1);
           }
@@ -67,15 +64,17 @@
       }
     }
 
-    .group_secondary {
-      width: 100%;
-      color: white;
-      padding: 1.0em;
-
+    .group_primary, .group_secondary {
       > * {
         .opacity(0);
         .transition(all 0.5s ease);
       }
+    }
+
+    .group_secondary {
+      width: 100%;
+      color: white;
+      padding: 1.0em;
     }
   }
 
