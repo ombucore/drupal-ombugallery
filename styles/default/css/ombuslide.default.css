@@ -120,6 +120,7 @@
 .ombuslide-slideshow .prevnext > li.cycle-pager-active a,
 .ombuslide-slideshow .pager > li.cycle-pager-active a:hover,
 .ombuslide-slideshow .prevnext > li.cycle-pager-active a:hover {
+  cursor: default;
   color: yellow;
 }
 .ombuslide-slideshow[data-slide-count="0"] .pager,
