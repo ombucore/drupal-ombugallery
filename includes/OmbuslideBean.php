@@ -5,37 +5,17 @@
  */
 
 class OmbuslideBean extends BeanPlugin {
-
   /**
-   * Implements the value() method.
+   * Implements parent::view().
    */
-  public function values() {
+  public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
+    $content = parent::view($bean, $content, $view_mode, $langcode);
 
-    $values = parent::values();
-    $values += array(
-      'style' => 'default',
-    );
-    return $values;
-  }
-
-  /**
-   * Implements the form() method.
-   */
-  public function form($bean, $form, &$form_state) {
-
-    $form = parent::form($bean, $form, $form_state);
-
-    foreach (module_invoke_all('ombuslide_styles') as $k => $v) {
-      $styles[$k] = $v['label'];
+    // Let any bean styles alter content.
+    if (module_exists('bean_style')) {
+      bean_style_view_alter($content, $bean);
     }
 
-    $form['style'] = array(
-      '#title' => t('Style'),
-      '#type' => 'select',
-      '#required' => TRUE,
-      '#options' => $styles,
-      '#default_value' => $bean->style,
-    );
-    return $form;
+    return $content;
   }
 }

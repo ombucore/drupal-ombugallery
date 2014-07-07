@@ -1,0 +1,203 @@
+.ombuslide-slideshow .carousel {
+  text-align: center;
+}
+.ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links {
+  display: none;
+}
+.ombuslide-slideshow .carousel .horizontal-scroll-inner > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li {
+  margin-bottom: 3.0em;
+}
+.ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li a {
+  font-weight: 600;
+}
+.ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li .field-name-field-image {
+  margin-bottom: 1.0em;
+}
+.ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li .field-name-field-image img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+@media all and (min-width: 990px) {
+  .ombuslide-slideshow .carousel .horizontal-scroll {
+    position: relative;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li {
+    margin: 0 -0.25em 0 0;
+    padding: 0;
+    display: inline-block;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li a {
+    position: relative;
+    display: block;
+    width: 36px;
+    height: 24px;
+    padding: 0;
+    pointer-events: auto;
+    text-decoration: none;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li a span {
+    display: none;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li a:before,
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li a:after {
+    position: absolute;
+    content: '\2B24';
+    top: 0;
+    left: 0;
+    font-size: 24px;
+    line-height: 24px;
+    width: 100%;
+    color: #ccc;
+    text-align: center;
+    transition: color 0.3s ease;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li a:after {
+    color: white;
+    top: 7px;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li.active > a:after,
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li > a:hover:after,
+  .ombuslide-slideshow .carousel .horizontal-scroll > .anchor-links ul li > a:focus:after {
+    color: yellow;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner {
+    overflow-x: hidden;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul {
+    white-space: nowrap;
+    margin-bottom: 20px;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li {
+    margin-bottom: 0;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li .slide-image-outer {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 55%;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li .slide-image-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li .field-name-field-image {
+    height: 100%;
+    position: relative;
+    margin-bottom: 1.0em;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li .field-name-field-image img {
+    height: 100%;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    margin: 0;
+    white-space: normal;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li:first-child {
+    margin-left: 0;
+  }
+  .ombuslide-slideshow .carousel .horizontal-scroll-inner > ul li:last-child {
+    margin-right: 0;
+  }
+  .ombuslide-slideshow.span6 .carousel .horizontal-scroll > .anchor-links ul li,
+  .ombuslide-slideshow.span7 .carousel .horizontal-scroll > .anchor-links ul li,
+  .ombuslide-slideshow.span8 .carousel .horizontal-scroll > .anchor-links ul li {
+    display: none;
+  }
+  .ombuslide-slideshow.span6 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(3n+1),
+  .ombuslide-slideshow.span7 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(3n+1),
+  .ombuslide-slideshow.span8 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(3n+1) {
+    display: inline-block;
+  }
+  .ombuslide-slideshow.span6 .carousel .horizontal-scroll-inner > ul li,
+  .ombuslide-slideshow.span7 .carousel .horizontal-scroll-inner > ul li,
+  .ombuslide-slideshow.span8 .carousel .horizontal-scroll-inner > ul li {
+    width: 32%;
+    margin: 0 2% 0 -0.25em;
+  }
+  .ombuslide-slideshow.span6 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span7 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span8 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span6 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span7 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span8 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span6 .count-3 > .anchor-links,
+  .ombuslide-slideshow.span7 .count-3 > .anchor-links,
+  .ombuslide-slideshow.span8 .count-3 > .anchor-links {
+    display: none;
+  }
+  .ombuslide-slideshow.span9 .carousel .horizontal-scroll > .anchor-links ul li,
+  .ombuslide-slideshow.span10 .carousel .horizontal-scroll > .anchor-links ul li,
+  .ombuslide-slideshow.span11 .carousel .horizontal-scroll > .anchor-links ul li {
+    display: none;
+  }
+  .ombuslide-slideshow.span9 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(4n+1),
+  .ombuslide-slideshow.span10 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(4n+1),
+  .ombuslide-slideshow.span11 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(4n+1) {
+    display: inline-block;
+  }
+  .ombuslide-slideshow.span9 .carousel .horizontal-scroll-inner > ul li,
+  .ombuslide-slideshow.span10 .carousel .horizontal-scroll-inner > ul li,
+  .ombuslide-slideshow.span11 .carousel .horizontal-scroll-inner > ul li {
+    width: 23.5%;
+    margin: 0 2% 0 -0.25em;
+  }
+  .ombuslide-slideshow.span9 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span10 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span11 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span9 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span10 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span11 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span9 .count-3 > .anchor-links,
+  .ombuslide-slideshow.span10 .count-3 > .anchor-links,
+  .ombuslide-slideshow.span11 .count-3 > .anchor-links,
+  .ombuslide-slideshow.span9 .count-4 > .anchor-links,
+  .ombuslide-slideshow.span10 .count-4 > .anchor-links,
+  .ombuslide-slideshow.span11 .count-4 > .anchor-links {
+    display: none;
+  }
+  .ombuslide-slideshow.span12 .carousel .horizontal-scroll > .anchor-links ul li {
+    display: none;
+  }
+  .ombuslide-slideshow.span12 .carousel .horizontal-scroll > .anchor-links ul li:nth-child(5n+1) {
+    display: inline-block;
+  }
+  .ombuslide-slideshow.span12 .carousel .horizontal-scroll-inner > ul li {
+    width: 18.4%;
+    margin: 0 2% 0 -0.25em;
+  }
+  .ombuslide-slideshow.span12 .count-1 > .anchor-links,
+  .ombuslide-slideshow.span12 .count-2 > .anchor-links,
+  .ombuslide-slideshow.span12 .count-3 > .anchor-links,
+  .ombuslide-slideshow.span12 .count-4 > .anchor-links,
+  .ombuslide-slideshow.span12 .count-5 > .anchor-links {
+    display: none;
+  }
+}
