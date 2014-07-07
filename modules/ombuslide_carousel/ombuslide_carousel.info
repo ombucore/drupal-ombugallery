@@ -1,0 +1,7 @@
+name = Ombuslide: Carousel
+description = Carousel style for ombuslide
+version = 7.x-0.1
+core = 7.x
+dependencies[] = ombuslide
+dependencies[] = bean_style
+files[] = includes/CarouselBeanStyle.php

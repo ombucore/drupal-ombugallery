@@ -19,12 +19,15 @@ function ombuslide_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'ombuslide',
+        'module' => 'field_collection',
         'settings' => array(
-          'style' => 'responsive',
-          'style_options' => '{}',
+          'add' => '',
+          'delete' => '',
+          'description' => 0,
+          'edit' => '',
+          'view_mode' => 'full',
         ),
-        'type' => 'ombuslide_collection',
+        'type' => 'field_collection_view',
         'weight' => 1,
       ),
     ),
@@ -51,14 +54,14 @@ function ombuslide_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 4,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -91,14 +94,14 @@ function ombuslide_field_default_field_instances() {
         ),
         'browser_plugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
-          'media_internet' => 'media_internet',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
           'upload' => 'upload',
         ),
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 0,
+      'weight' => 1,
     ),
   );
 
@@ -114,7 +117,7 @@ function ombuslide_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -132,7 +135,7 @@ function ombuslide_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -148,7 +151,7 @@ function ombuslide_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -166,7 +169,7 @@ function ombuslide_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -174,7 +177,6 @@ function ombuslide_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Content');
   t('Define the content for each slide in the slideshow.  Drag and drop the slides to order them within the slideshow.');
-  t('Image');
   t('Optional content text for the image.  Since there is limited space for the slideshow, it is best to keep this as short as possible.');
   t('Optional title text for the image.');
   t('Slides');
