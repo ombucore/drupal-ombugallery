@@ -50,17 +50,15 @@ function ombuslide_field_default_field_instances() {
   // Exported field_instance: 'field_collection_item-field_slide-field_image'
   $field_instances['field_collection_item-field_slide-field_image'] = array(
     'bundle' => 'field_slide',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
+        'module' => 'ombumedia',
+        'settings' => array(),
+        'type' => 'ombumedia_render',
         'weight' => 0,
       ),
     ),
@@ -81,7 +79,7 @@ function ombuslide_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'ombumedia',
       'settings' => array(
         'allowed_schemes' => array(
           'public' => 'public',
@@ -92,15 +90,16 @@ function ombuslide_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 0,
-          'media_internet' => 0,
-          'upload' => 'upload',
+        'allowed_view_modes' => array(
+          'audio' => array(),
+          'document' => array(),
+          'image' => array(
+            'preview' => 'preview',
+          ),
+          'video' => array(),
         ),
-        'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'ombumedia',
       'weight' => 1,
     ),
   );
