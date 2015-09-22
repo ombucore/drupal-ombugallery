@@ -1,0 +1,9 @@
+.ombugallery .slides {
+  margin: 0;
+}
+.ombugallery .slides > li {
+  list-style: none;
+}
+.ombugallery .pager {
+  margin-bottom: 0;
+}
