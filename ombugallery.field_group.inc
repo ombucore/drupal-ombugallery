@@ -23,7 +23,7 @@ function ombugallery_field_group_info() {
     'label' => 'Primary slide content',
     'weight' => '2',
     'children' => array(
-      0 => 'field_image',
+      0 => 'field_media',
     ),
     'format_type' => 'div',
     'format_settings' => array(

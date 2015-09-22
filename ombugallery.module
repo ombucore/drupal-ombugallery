@@ -60,8 +60,8 @@ function ombugallery_form_bean_form_alter(&$form, $form_state) {
   // provide a simpler form for ordering and editing slides.
   if ($form['#bundle'] == 'ombugallery') {
     $path = drupal_get_path('module', 'ombugallery');
-    drupal_add_js($path . '/ombugallery.admin.js');
-    drupal_add_css($path . '/ombugallery.admin.css');
+    drupal_add_js($path . '/js/ombugallery.admin.js');
+    drupal_add_css($path . '/css/ombugallery.admin.css');
     $form['#submit'][] = 'ombugallery_form_bean_form_submit';
   }
 }
@@ -88,7 +88,7 @@ function ombugallery_create_slide($bean, $image_path = NULL, $title = NULL, $des
     $directory = file_default_scheme() . '://slide';
     file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
     $file = file_save_data(file_get_contents($image_path), $directory . '/slide.jpg');
-    $field_collection_item->field_image[LANGUAGE_NONE][] = (array)$file;
+    $field_collection_item->field_media[LANGUAGE_NONE][] = (array)$file;
   }
   if ($title ) {
     $field_collection_item->field_slide_title[LANGUAGE_NONE][]['value'] = $title;
