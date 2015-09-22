@@ -94,7 +94,7 @@ function ombugallery_field_default_field_instances() {
           'audio' => array(),
           'document' => array(),
           'image' => array(
-            'preview' => 'preview',
+            'default' => 'default',
           ),
           'video' => array(),
         ),
