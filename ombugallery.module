@@ -27,10 +27,10 @@ function ombugallery_bean_types() {
     'name' => 'ombugallery',
     'label' => t('Slideshow'),
     'handler' => array(
-      'class' => 'OmbuslideBean',
+      'class' => 'OmbugalleryBean',
       'parent' => 'BeanPlugin',
-      'path' => $plugin_path . '/includes',
-      'file' => 'OmbuslideBean.php',
+      'path' => $plugin_path . '/plugins',
+      'file' => 'OmbugalleryBean.class.php',
     ),
     'editable' => TRUE,
   );
