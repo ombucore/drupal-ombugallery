@@ -64,7 +64,7 @@ function ombugallery_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_media',
-    'label' => 'Image',
+    'label' => 'Media',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
