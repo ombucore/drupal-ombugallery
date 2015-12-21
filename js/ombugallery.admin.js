@@ -71,8 +71,8 @@
 
   Drupal.theme.prototype.ombugalleryOverview = function($form) {
     var html = '<td class="overview"><div class="overview-column">';
-    if ($("div.media-item", $form).html()) {
-      html += $("div.media-item", $form).html();
+    if ($("div.ombumedia-file-field-preview", $form).html()) {
+      html += $("div.ombumedia-file-field-preview", $form).html();
     }
     html += '</div><div class="overview-column title">';
     if ($(".field-name-field-slide-title input", $form).val()) {

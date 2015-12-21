@@ -47,8 +47,8 @@ function ombugallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_slide-field_image'
-  $field_instances['field_collection_item-field_slide-field_image'] = array(
+  // Exported field_instance: 'field_collection_item-field_slide-field_media'
+  $field_instances['field_collection_item-field_slide-field_media'] = array(
     'bundle' => 'field_slide',
     'default_value' => NULL,
     'deleted' => 0,
@@ -63,8 +63,8 @@ function ombugallery_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'field_collection_item',
-    'field_name' => 'field_image',
-    'label' => 'Image',
+    'field_name' => 'field_media',
+    'label' => 'Media',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -94,7 +94,7 @@ function ombugallery_field_default_field_instances() {
           'audio' => array(),
           'document' => array(),
           'image' => array(
-            'preview' => 'preview',
+            'default' => 'default',
           ),
           'video' => array(),
         ),
