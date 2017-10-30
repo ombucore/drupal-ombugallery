@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function ombugallery_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -39,7 +39,7 @@ function ombugallery_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_primary|field_collection_item|field_slide|default'] = $field_group;
+  $field_groups['group_primary|field_collection_item|field_slide|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -54,9 +54,9 @@ function ombugallery_field_group_info() {
     'label' => 'Secondary slide content',
     'weight' => '3',
     'children' => array(
-      0 => 'field_slide_text',
-      1 => 'field_slide_title',
-      2 => 'field_link',
+      0 => 'field_cta_link',
+      1 => 'field_slide_text',
+      2 => 'field_slide_title',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -72,7 +72,12 @@ function ombugallery_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_secondary|field_collection_item|field_slide|default'] = $field_group;
+  $field_groups['group_secondary|field_collection_item|field_slide|default'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Primary slide content');
+  t('Secondary slide content');
+
+  return $field_groups;
 }
