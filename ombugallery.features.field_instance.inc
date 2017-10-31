@@ -120,14 +120,7 @@ function ombugallery_field_default_field_instances() {
     'label' => 'Media',
     'required' => 0,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -135,19 +128,18 @@ function ombugallery_field_default_field_instances() {
       'module' => 'ombumedia',
       'settings' => array(
         'allowed_schemes' => array(
+          'oembed' => 0,
           'public' => 'public',
         ),
         'allowed_types' => array(
-          'audio' => 0,
           'document' => 0,
           'image' => 'image',
           'video' => 0,
         ),
         'allowed_view_modes' => array(
-          'audio' => array(),
           'document' => array(),
           'image' => array(
-            'default' => 'default',
+            'nwc_gallery' => 'nwc_gallery',
           ),
           'video' => array(),
         ),
@@ -155,6 +147,7 @@ function ombugallery_field_default_field_instances() {
       'type' => 'ombumedia',
       'weight' => 1,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance:
