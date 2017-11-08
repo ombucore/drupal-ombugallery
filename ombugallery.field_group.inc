@@ -54,9 +54,9 @@ function ombugallery_field_group_info() {
     'label' => 'Secondary slide content',
     'weight' => '3',
     'children' => array(
-      0 => 'field_cta_link',
-      1 => 'field_slide_text',
-      2 => 'field_slide_title',
+      0 => 'field_slide_text',
+      1 => 'field_slide_title',
+      2 => 'field_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
